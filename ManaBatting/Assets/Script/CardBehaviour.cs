@@ -86,9 +86,8 @@ public class CardBehaviour : MonoBehaviour
     {
         slot = _slot;
         slot.Batch(this);
-        SetTargetPlace(_slot.transform);
 
-        hand.SubCard(index);
+        SetTargetPlace(_slot.transform);
     }
 
     public void UnSlot()
@@ -98,8 +97,16 @@ public class CardBehaviour : MonoBehaviour
 
         slot.UnBatch();
         slot = null;
+    }
 
+    public void AddHand()
+    {
         hand.AddCard(this);
+    }
+
+    public void SubHand()
+    {
+        hand.SubCard(index);
     }
 
     public void SetTargetPlace(Transform _target)

@@ -5,9 +5,12 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
 
-    public Transform selectCard;
+    public CardBehaviour selectCard;
 
     Vector2 pos;
+
+    BatchSlot slot;
+    CardBehaviour card;
 
     void Update()
     {
@@ -17,8 +20,11 @@ public class InputManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.forward, 10f, LayerMask.GetMask("Card"));
             if (hit.collider != null)
             {
-                if (hit.collider.GetComponent<CardBehaviour>().isMine)
-                    selectCard = hit.transform;
+                card = hit.collider.GetComponent<CardBehaviour>();
+
+                if (card.isMine)
+                    selectCard = card;
+
             }
         }
 
@@ -26,31 +32,43 @@ public class InputManager : MonoBehaviour
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Collider2D hit = Physics2D.OverlapBox(pos, new Vector2(6, 8), 0f, LayerMask.GetMask("BatchSlot"));
-            if (hit != null && hit.GetComponent<BatchSlot>().IsAllowBatch())
-            {
-                selectCard.GetComponent<CardBehaviour>().SetSlot(hit.GetComponent<BatchSlot>());
-            }
-            else {
-                
-                if (selectCard.GetComponent<CardBehaviour>().slot != null)
-                {
-                    selectCard.GetComponent<CardBehaviour>().UnSlot();
 
+            if (hit != null)
+            {
+                slot = hit.GetComponent<BatchSlot>();
+
+                if (slot.IsAllowBatch())
+                {
+                    if (selectCard.slot != null)
+                    {
+                        selectCard.UnSlot();
+                    }
+                    else
+                    {
+                        selectCard.SubHand();
+                    }
+
+                    selectCard.SetSlot(slot);
+                }
+            }
+            else
+            {
+                if (selectCard.slot != null)
+                {
+                    selectCard.UnSlot();
                 }
 
-                selectCard.GetComponent<CardBehaviour>().SetReplaceOrign();
+                selectCard.AddHand();
             }
 
             selectCard = null;
         }
+
         if (selectCard != null && Input.GetMouseButton(0))
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            selectCard.position = Vector2.Lerp(selectCard.position, pos, Time.deltaTime * 10f);
+            selectCard.transform.position = Vector2.Lerp(selectCard.transform.position, pos, Time.deltaTime * 10f);
         }
-
-
-
     }
 
 }

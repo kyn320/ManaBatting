@@ -15,11 +15,6 @@ public class HandCard : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        // Batch();
-    }
-
-    void Update()
-    {
         Batch();
     }
 
@@ -42,7 +37,7 @@ public class HandCard : MonoBehaviour
 
         float twistPerCard = totalTwist / numberOfCards;
 
-        print("per card " + twistPerCard);
+        //print("per card " + twistPerCard);
 
         float startTwist = 0;
         float startX = 0;
@@ -50,13 +45,13 @@ public class HandCard : MonoBehaviour
         startTwist = twistPerCard * ((numberOfCards / 2) - 0.5f);
         startX = -cardPerDistance * ((numberOfCards / 2) - 0.5f);
 
-        print("startTwist " + startTwist);
+        //print("startTwist " + startTwist);
 
         for (int i = 0; i < numberOfCards; ++i)
         {
             float twistForThisCard = startTwist - (i * twistPerCard);
 
-            print("twistForThisCard " + twistForThisCard);
+            //print("twistForThisCard " + twistForThisCard);
 
             float scalingFactor = 0.25f;
 
