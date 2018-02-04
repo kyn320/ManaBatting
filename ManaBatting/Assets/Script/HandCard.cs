@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HandCard : MonoBehaviour
 {
+    public int id;
 
     public int mana;
     public List<CardBehaviour> cardList;
@@ -14,9 +15,25 @@ public class HandCard : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Batch();
+    }
+
+    void Update()
+    {
         Batch();
     }
 
+    public void AddCard(CardBehaviour _card)
+    {
+        cardList.Add(_card);
+        Batch();
+    }
+
+    public void SubCard(int _index)
+    {
+        cardList.RemoveAt(_index);
+        Batch();
+    }
 
     void Batch()
     {
@@ -25,39 +42,36 @@ public class HandCard : MonoBehaviour
 
         float twistPerCard = totalTwist / numberOfCards;
 
-        //print("per card " + twistPerCard);
+        print("per card " + twistPerCard);
 
         float startTwist = 0;
         float startX = 0;
 
-        if (numberOfCards % 2 == 1)
-        {
-            startTwist = twistPerCard * 2f;
-            startX = -cardPerDistance * 2f;
-        }
-        else
-        {
-            startTwist = twistPerCard * 2.5f;
-            startX = -cardPerDistance * 2.5f;
-        }
+        startTwist = twistPerCard * ((numberOfCards / 2) - 0.5f);
+        startX = -cardPerDistance * ((numberOfCards / 2) - 0.5f);
 
-        //print("startTwist " + startTwist);
+        print("startTwist " + startTwist);
 
         for (int i = 0; i < numberOfCards; ++i)
         {
             float twistForThisCard = startTwist - (i * twistPerCard);
 
-            //print("twistForThisCard " + twistForThisCard);
-
-            cardList[i].transform.rotation = Quaternion.Euler(0f, 0f, twistForThisCard);
+            print("twistForThisCard " + twistForThisCard);
 
             float scalingFactor = 0.25f;
 
             float nudgeThisCard = Mathf.Abs(twistForThisCard);
 
             nudgeThisCard *= scalingFactor;
-            cardList[i].transform.localPosition = new Vector3(startX + (i * cardPerDistance), -nudgeThisCard, 0f);
 
+            cardList[i].SetHandOrign(transform.TransformPoint(new Vector2(startX + (i * cardPerDistance), -nudgeThisCard)), Quaternion.Euler(0f, 0f, twistForThisCard));
+
+            if (id != GameManager.instance.myID)
+                cardList[i].Hide();
+            else
+                cardList[i].Open();
+
+            cardList[i].SetHand(this);
             cardList[i].SetIndex(i);
         }
 

@@ -8,7 +8,8 @@ public class Card
 
     public string name;
     public int id;
-    public Sprite cardSprite;
+
+    public Sprite openSprite, backSprite;
 
     public int cost;
 
