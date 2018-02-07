@@ -17,17 +17,18 @@ public class UIManaBet : MonoBehaviour
     public void View()
     {
         gameObject.SetActive(true);
+        betManaText[0].text = betManaText[1].text = manaBetThink.ToString();
     }
 
-    public void UpdateBet()
+    public void UpdateBet(int _mana)
     {
-
+        betManaText[1].text = _mana.ToString();
     }
 
     public void ViewBet()
     {
-        betManaText[0].text = GameManager.instance.GetMyBet().ToString();
-        betManaText[1].text = GameManager.instance.GetOtherBet().ToString();
+        betManaText[0].text = GameManager.Instance.GetMyBet().ToString();
+        betManaText[1].text = GameManager.Instance.GetOtherBet().ToString();
 
         subButton.gameObject.SetActive(true);
         addButton.gameObject.SetActive(true);
@@ -39,22 +40,28 @@ public class UIManaBet : MonoBehaviour
     public void AddMana()
     {
         ++manaBetThink;
+        manaBetThink = Mathf.Clamp(manaBetThink, 0, 100);
+        betManaText[0].text = manaBetThink.ToString();
     }
 
     public void SubMana()
     {
         --manaBetThink;
+        manaBetThink = Mathf.Clamp(manaBetThink, 0, 100);
+        betManaText[0].text = manaBetThink.ToString();
     }
 
     public void GiveUp()
     {
         manaBetThink = -1;
+        Bet();
     }
 
     public void Bet()
     {
-        GameManager.instance.SendManaBet(manaBetThink);
+        GameManager.Instance.SendManaBet(manaBetThink);
         manaBetThink = 0;
+        betManaText[0].text = manaBetThink.ToString();
     }
 
 }

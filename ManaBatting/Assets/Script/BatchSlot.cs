@@ -10,22 +10,34 @@ public class BatchSlot : MonoBehaviour
     public int index;
     public bool isMine = false;
 
+    public CardBehaviour GetCard()
+    {
+        return group.batchList[index];
+    }
 
     public void Batch(CardBehaviour _card)
     {
-        group.batchList[index] = _card;
+        group.BatchCard(index, _card);
     }
 
-    public void UnBatch() {
-        group.batchList[index] = null;
+    public void UnBatch()
+    {
+        group.BatchCard(index, null);
     }
 
     public bool IsAllowBatch()
     {
-        if (isMine && group.batchList[index] == null)
+        if (isMine)
             return true;
         else
             return false;
     }
 
+    public bool IsEmpty()
+    {
+        if (group.batchList[index] == null)
+            return true;
+        else
+            return false;
+    }
 }

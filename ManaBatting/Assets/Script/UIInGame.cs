@@ -10,7 +10,7 @@ public class UIInGame : MonoBehaviour
 
     public void OnFinshBatch()
     {
-        GameManager.instance.SendReadyBatch(GameManager.instance.myID);
+        GameManager.Instance.SendReadyBatch(GameManager.Instance.myID);
     }
 
 

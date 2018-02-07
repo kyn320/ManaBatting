@@ -1,10 +1,19 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    private static GameManager instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     public UIInGame ui;
     public HandCard[] handCards;
@@ -13,11 +22,13 @@ public class GameManager : MonoBehaviour
     public bool isBatch = false;
 
     public int baseMana;
+
     public int[] manaBet;
     public bool[] giveUpBet;
-
     public bool[] readyForBatch;
 
+
+    public List<PhotonPlayer> playerList;
     public int myID = -1;
 
     public Transform spinCoin;
@@ -25,19 +36,32 @@ public class GameManager : MonoBehaviour
     public int currentBetTurn = -1;
     public int countBetTurn = 0;
 
-
     public int currentTurn = 1;
+
+    PhotonView photonView;
 
     void Awake()
     {
         instance = this;
+        photonView = PhotonView.Get(this);
     }
 
     void Start()
     {
-        //GameStart();
+        manaBet = new int[PhotonNetwork.room.MaxPlayers];
+        giveUpBet = new bool[PhotonNetwork.room.MaxPlayers];
+        readyForBatch = new bool[PhotonNetwork.room.MaxPlayers];
+
+        playerList = PhotonNetwork.playerList.OfType<PhotonPlayer>().ToList();
+        playerList.Sort();
+
+        if (PhotonNetwork.isMasterClient)
+        {
+            photonView.RPC("GameStart", PhotonTargets.All, null);
+        }
     }
 
+    [PunRPC]
     void GameStart()
     {
         //기본 마나를 <baseMana>개 지급
@@ -49,16 +73,27 @@ public class GameManager : MonoBehaviour
         isBatch = true;
     }
 
+    public int FindIndexPlayerList(string _name)
+    {
+        for (int i = 0; i < playerList.Count; ++i)
+        {
+            if (playerList[i].NickName == _name)
+                return i;
+        }
+        return -1;
+    }
+
     public void SendReadyBatch(int _id)
     {
         //서버로 전송
-        OnReadyBatch(_id);
+        photonView.RPC("OnReadyBatch", PhotonTargets.AllBuffered, _id, batchCardGroups[myID].batchList);
     }
 
-    //[PunRPC]
-    void OnReadyBatch(int _id)
+    [PunRPC]
+    void OnReadyBatch(int _id, CardBehaviour[] batchCard)
     {
         readyForBatch[_id] = true;
+        batchCardGroups[_id].batchList = batchCard;
 
         //플레이어 A와 B가 모두 준비 완료
         if (readyForBatch[0] && readyForBatch[1])
@@ -68,8 +103,8 @@ public class GameManager : MonoBehaviour
             {
                 batchCardGroups[i].OpenCard(0);
                 //마스터 클라이언트에서 동전을 뒤집음
-                //if(isMaster?)
-                SendSpinCoin();
+                if (PhotonNetwork.isMasterClient)
+                    SendSpinCoin();
             }
         }
     }
@@ -80,13 +115,13 @@ public class GameManager : MonoBehaviour
         OnSpinCoin();
     }
 
-    //[PunRPC]
+    [PunRPC]
     void OnSpinCoin()
     {
         StartCoroutine(SpinCoin());
-        //if(isMaster?)
-        //
-        StartCoroutine(RandomBetTurn());
+
+        if (PhotonNetwork.isMasterClient)
+            StartCoroutine(RandomBetTurn());
     }
 
     IEnumerator SpinCoin()
@@ -110,11 +145,11 @@ public class GameManager : MonoBehaviour
 
     void SendRandomBetTurn(int _whoFirst)
     {
-        //서버로 순서를 전송
-        OnRandomBetTurn(_whoFirst);
+        //서버로 전송
+        photonView.RPC("OnRandomBetTurn", PhotonTargets.AllBuffered, _whoFirst);
     }
 
-    //[PunRPC]
+    [PunRPC]
     void OnRandomBetTurn(int _whoFirst)
     {
         whoFirst = _whoFirst;
@@ -135,13 +170,14 @@ public class GameManager : MonoBehaviour
         // 베팅 종료
         if (countBetTurn == 2 && (giveUpBet[0] || giveUpBet[1]))
         {
-
+            print("open All Card");
         }
-        //서버로 다음 턴을 전송
-        OnNextBetTurn(currentBetTurn + 1);
+
+        //서버로 전송
+        photonView.RPC("OnNextBetTurn", PhotonTargets.AllBuffered, currentBetTurn + 1);
     }
 
-    //[PunRPC]
+    [PunRPC]
     void OnNextBetTurn(int _nextTurn)
     {
         //베팅 카운트 
@@ -156,10 +192,11 @@ public class GameManager : MonoBehaviour
 
     public void SendManaBet(int _manaBet)
     {
-        OnManaBet(myID, _manaBet);
+        //서버로 전송
+        photonView.RPC("OnManaBet", PhotonTargets.AllBuffered, myID, _manaBet);
     }
 
-    //[PunRPC]
+    [PunRPC]
     public void OnManaBet(int _id, int _manaBet)
     {
         if (_manaBet == -1)

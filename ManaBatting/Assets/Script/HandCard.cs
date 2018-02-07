@@ -7,6 +7,8 @@ public class HandCard : MonoBehaviour
     public int id;
 
     public int mana;
+
+    public GameObject cardPrefab;
     public List<CardBehaviour> cardList;
 
     public float totalTwist = 10f;
@@ -16,6 +18,15 @@ public class HandCard : MonoBehaviour
     void Start()
     {
         Batch();
+    }
+
+    public void DrawCard(Card _card, bool _isMine)
+    {
+        GameObject g = Instantiate(cardPrefab);
+        CardBehaviour cardBehaviour = g.GetComponent<CardBehaviour>();
+        cardBehaviour.SetCard(_card);
+        cardBehaviour.SetIsMine(_isMine);
+        AddCard(cardBehaviour);
     }
 
     public void AddCard(CardBehaviour _card)
@@ -61,7 +72,7 @@ public class HandCard : MonoBehaviour
 
             cardList[i].SetHandOrign(transform.TransformPoint(new Vector2(startX + (i * cardPerDistance), -nudgeThisCard)), Quaternion.Euler(0f, 0f, twistForThisCard));
 
-            if (id != GameManager.instance.myID)
+            if (id != GameManager.Instance.myID)
                 cardList[i].Hide();
             else
                 cardList[i].Open();

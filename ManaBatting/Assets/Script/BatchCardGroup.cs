@@ -10,12 +10,31 @@ public class BatchCardGroup : MonoBehaviour
 
     public CardBehaviour[] batchList;
 
+    PhotonView photonView;
+
+    void Awake()
+    {
+        photonView = PhotonView.Get(this);
+    }
+
     public void OpenCard(int _index)
     {
         StartCoroutine(Open(_index));
     }
 
     public void BatchCard(int _index, CardBehaviour _card)
+    {
+        batchList[_index] = _card;
+        SendBatchCard(_index);
+    }
+
+    [PunRPC]
+    public void SendBatchCard(int _index)
+    {
+        photonView.RPC("OnBatchCard", PhotonTargets.OthersBuffered, batchList[_index]);
+    }
+
+    public void OnBatchCard(int _index, CardBehaviour _card)
     {
         batchList[_index] = _card;
     }
@@ -30,7 +49,8 @@ public class BatchCardGroup : MonoBehaviour
             cardTransform.localRotation = Quaternion.Lerp(cardTransform.localRotation, rot, Time.deltaTime * 20f);
             checkRot = Quaternion.Angle(cardTransform.localRotation, rot);
             print(checkRot);
-            if (checkRot < 0.5f) {
+            if (checkRot < 0.5f)
+            {
                 batchList[_index].Open();
                 print("test");
             }
