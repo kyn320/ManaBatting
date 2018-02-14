@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CardBehaviour : MonoBehaviour
@@ -22,6 +23,22 @@ public class CardBehaviour : MonoBehaviour
 
     public Canvas infoView;
     public Text cardNameText, cardCostText, cardTypeText, cardExplainText;
+
+    public PhotonView photonView;
+
+    public UnityAction endAction;
+
+    CardEffect effect;
+
+    void Awake()
+    {
+        photonView = PhotonView.Get(this);
+    }
+
+    void Start()
+    {
+        effect = GetComponent<CardEffect>();
+    }
 
     public void SetHand(HandCard _hand)
     {
@@ -61,6 +78,11 @@ public class CardBehaviour : MonoBehaviour
     public void SetCard(Card _card)
     {
         card = _card;
+
+        gameObject.name = photonView.owner.NickName + " | " + card.name;
+
+        ViewInfo();
+
         System.Type type = System.Type.GetType(card.effectEventName + "Effect");
 
         if (type != null)
@@ -69,9 +91,9 @@ public class CardBehaviour : MonoBehaviour
             Debug.LogError(card.effectEventName + "Effect is not found.");
     }
 
-    public void SetIsMine(bool _isMine)
+    public void SetIsMine()
     {
-        isMine = _isMine;
+        isMine = photonView.isMine;
     }
 
     public void Open()
@@ -120,20 +142,34 @@ public class CardBehaviour : MonoBehaviour
         SetTargetPlace(slot.transform);
     }
 
-    public void SetSlot(BatchSlot _slot)
+    public void SetSlot(BatchSlot _slot, bool _isSend, bool _isControlHand)
     {
         slot = _slot;
         slot.Batch(this);
 
+        if (_isSend)
+            slot.SendSetBatch(this, _isControlHand);
+
+        if (_isControlHand)
+            SubHand();
+
+        index = -1;
         SetTargetPlace(_slot.transform);
     }
 
-    public void UnSlot()
+    public void UnSlot(bool _isSend, bool _isControlHand)
     {
         if (slot == null)
             return;
 
         slot.UnBatch();
+
+        if (_isSend)
+            slot.SendUnBatch(_isControlHand);
+
+        if (_isControlHand)
+            AddHand();
+
         slot = null;
     }
 
@@ -142,10 +178,33 @@ public class CardBehaviour : MonoBehaviour
         hand.AddCard(this);
     }
 
+    public void SendAddHand()
+    {
+        photonView.RPC("OnAddHand", PhotonTargets.OthersBuffered, null);
+    }
+
+    [PunRPC]
+    public void OnAddHand()
+    {
+        print("add hand");
+        hand.AddCard(this);
+    }
+
     public void SubHand()
     {
         hand.SubCard(index);
-        index = -1;
+    }
+
+    public void SendSubHand()
+    {
+        photonView.RPC("OnSubHand", PhotonTargets.OthersBuffered, null);
+    }
+
+    [PunRPC]
+    public void OnSubHand()
+    {
+        print("sub hand");
+        hand.SubCard(index);
     }
 
     public void SetTargetPlace(Transform _target)
@@ -180,6 +239,26 @@ public class CardBehaviour : MonoBehaviour
         cardCostText.text = card.cost.ToString();
         cardTypeText.text = card.type.ToString();
         cardExplainText.text = card.explain;
+    }
+
+    public void StartAction()
+    {
+        StartCoroutine(Action());
+    }
+
+    IEnumerator Action()
+    {
+        WaitForAction waitAction = new WaitForAction();
+        effect.SetEndAction(waitAction.Finish);
+        effect.StartAction();
+        yield return waitAction;
+        print("card behaviour out");
+        endAction.Invoke();
+    }
+
+    public void SetEndAction(UnityAction _action)
+    {
+        endAction = _action;
     }
 
 }

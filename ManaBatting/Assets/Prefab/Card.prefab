@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 4017806403389646}
   - component: {fileID: 114636602162332016}
   - component: {fileID: 61814577787509460}
+  - component: {fileID: 114159289360783148}
   m_Layer: 8
   m_Name: Card
   m_TagString: Untagged
@@ -337,6 +338,32 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114159289360783148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1521206396867706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114324416289344998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -437,20 +464,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: 
-    explain: 
-    id: 0
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
     frontSprite: {fileID: 0}
+    MiddleSpritePath: 
     middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 0}
+    HideSpritePath: 
     hideSprite: {fileID: 0}
-    cost: 0
-    type: 0
-    attack: 0
-    depence: 0
-    heal: 0
-    buff: 0
-    effectEventName: 
   frontSprRenderer: {fileID: 212072897305591998}
   middleSprRenderer: {fileID: 212551264814209042}
   backSprRenderer: {fileID: 212701662003145864}
@@ -462,6 +493,7 @@ MonoBehaviour:
   cardCostText: {fileID: 114431379224295630}
   cardTypeText: {fileID: 114942673582697378}
   cardExplainText: {fileID: 114695831445201958}
+  photonView: {fileID: 0}
 --- !u!114 &114656074836801500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -652,7 +684,7 @@ SpriteRenderer:
   m_Size: {x: 3.13, y: 3.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212551264814209042
 SpriteRenderer:
@@ -696,7 +728,7 @@ SpriteRenderer:
   m_Size: {x: 3.13, y: 3.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212701662003145864
 SpriteRenderer:
@@ -740,7 +772,7 @@ SpriteRenderer:
   m_Size: {x: 6, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!222 &222088427624332524
 CanvasRenderer:

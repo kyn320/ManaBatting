@@ -14,19 +14,46 @@ public class HandCard : MonoBehaviour
     public float totalTwist = 10f;
     public float cardPerDistance = 4f;
 
+    CardManager cardmanager;
+    PhotonView photonView;
+
+    void Awake()
+    {
+        photonView = PhotonView.Get(this);
+    }
+
     // Use this for initialization
     void Start()
     {
+        cardmanager = CardManager.Instance;
         Batch();
     }
 
     public void DrawCard(Card _card, bool _isMine)
     {
+        int viewId = PhotonNetwork.AllocateViewID();
+        SendDrawCard(viewId, _card.id, PhotonNetwork.player);
+    }
+
+    public void SendDrawCard(int _viewId, int _cardId, PhotonPlayer _player)
+    {
+        photonView.RPC("OnDrawCard", PhotonTargets.AllBuffered, _viewId, _cardId, _player);
+    }
+
+    [PunRPC]
+    public void OnDrawCard(int _viewId, int _cardId, PhotonPlayer _player)
+    {
         GameObject g = Instantiate(cardPrefab);
         CardBehaviour cardBehaviour = g.GetComponent<CardBehaviour>();
-        cardBehaviour.SetCard(_card);
-        cardBehaviour.SetIsMine(_isMine);
-        AddCard(cardBehaviour);
+        cardBehaviour.photonView.viewID = _viewId;
+        cardBehaviour.photonView.TransferOwnership(_player);
+        cardBehaviour.SetCard(CardDatabase.instance.GetCardWithID(_cardId));
+        cardBehaviour.SetIsMine();
+
+        if (cardBehaviour.isMine)
+            cardmanager.handCards[0].AddCard(cardBehaviour);
+        else
+            cardmanager.handCards[1].AddCard(cardBehaviour);
     }
 
     public void AddCard(CardBehaviour _card)

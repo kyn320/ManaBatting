@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    CardManager cardManager;
+    PhotonView photonView;
+
     public UIInGame ui;
-    public HandCard[] handCards;
-    public BatchCardGroup[] batchCardGroups;
+
 
     public bool isBatch = false;
 
@@ -38,7 +40,6 @@ public class GameManager : MonoBehaviour
 
     public int currentTurn = 1;
 
-    PhotonView photonView;
 
     void Awake()
     {
@@ -48,6 +49,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        cardManager = CardManager.Instance;
+
         manaBet = new int[PhotonNetwork.room.MaxPlayers];
         giveUpBet = new bool[PhotonNetwork.room.MaxPlayers];
         readyForBatch = new bool[PhotonNetwork.room.MaxPlayers];
@@ -55,20 +58,33 @@ public class GameManager : MonoBehaviour
         playerList = PhotonNetwork.playerList.OfType<PhotonPlayer>().ToList();
         playerList.Sort();
 
+        myID = FindMyID();
+
+        cardManager.SetID(myID);
+
         if (PhotonNetwork.isMasterClient)
         {
             photonView.RPC("GameStart", PhotonTargets.All, null);
         }
     }
 
+    int FindMyID()
+    {
+        for (int i = 0; i < playerList.Count; ++i)
+        {
+            if (PlayDataManager.instance.playerName == playerList[i].NickName)
+                return i;
+        }
+
+        return -1;
+    }
+
     [PunRPC]
     void GameStart()
     {
         //기본 마나를 <baseMana>개 지급
-        for (int i = 0; i < handCards.Length; ++i)
-        {
-            handCards[i].mana += baseMana;
-        }
+        cardManager.GiveManaAll(baseMana);
+
         //플레이어 A와 B는 자신의 덱에서 카드를 n개 배치 시작
         isBatch = true;
     }
@@ -86,25 +102,25 @@ public class GameManager : MonoBehaviour
     public void SendReadyBatch(int _id)
     {
         //서버로 전송
-        photonView.RPC("OnReadyBatch", PhotonTargets.AllBuffered, _id, batchCardGroups[myID].batchList);
+        photonView.RPC("OnReadyBatch", PhotonTargets.AllBuffered, _id);
     }
 
     [PunRPC]
-    void OnReadyBatch(int _id, CardBehaviour[] batchCard)
+    void OnReadyBatch(int _id)
     {
         readyForBatch[_id] = true;
-        batchCardGroups[_id].batchList = batchCard;
-
+        print(_id + "is ready");
         //플레이어 A와 B가 모두 준비 완료
         if (readyForBatch[0] && readyForBatch[1])
         {
             //플레이어 A와 B의 첫번째 카드를 오픈
-            for (int i = 0; i < batchCardGroups.Length; ++i)
+            //cardManager.OpenCard();
+
+            //마스터 클라이언트에서 동전을 뒤집음
+            if (PhotonNetwork.isMasterClient)
             {
-                batchCardGroups[i].OpenCard(0);
-                //마스터 클라이언트에서 동전을 뒤집음
-                if (PhotonNetwork.isMasterClient)
-                    SendSpinCoin();
+                print("send spin");
+                SendSpinCoin();
             }
         }
     }
@@ -112,7 +128,8 @@ public class GameManager : MonoBehaviour
     void SendSpinCoin()
     {
         //서버로 회전 상태를 전송
-        OnSpinCoin();
+        //서버로 전송
+        photonView.RPC("OnSpinCoin", PhotonTargets.AllBuffered, null);
     }
 
     [PunRPC]
@@ -121,7 +138,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpinCoin());
 
         if (PhotonNetwork.isMasterClient)
+        {
+            print("isMasterClient");
             StartCoroutine(RandomBetTurn());
+        }
     }
 
     IEnumerator SpinCoin()
@@ -140,7 +160,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         print("end spin");
-        ui.manaBet.View();
     }
 
     void SendRandomBetTurn(int _whoFirst)
@@ -152,9 +171,15 @@ public class GameManager : MonoBehaviour
     [PunRPC]
     void OnRandomBetTurn(int _whoFirst)
     {
+        print("WhoFirst on randomn rpc = " + _whoFirst + " / my ID = " + myID);
         whoFirst = _whoFirst;
         currentBetTurn = whoFirst;
         countBetTurn = 1;
+
+        ui.manaBet.View();
+
+        if (currentBetTurn == myID)
+            ui.manaBet.ViewBet();
     }
 
     IEnumerator RandomBetTurn()
@@ -167,27 +192,31 @@ public class GameManager : MonoBehaviour
 
     void SendNextBetTurn()
     {
-        // 베팅 종료
-        if (countBetTurn == 2 && (giveUpBet[0] || giveUpBet[1]))
-        {
-            print("open All Card");
-        }
-
         //서버로 전송
-        photonView.RPC("OnNextBetTurn", PhotonTargets.AllBuffered, currentBetTurn + 1);
+        photonView.RPC("OnNextBetTurn", PhotonTargets.AllBuffered, currentBetTurn);
     }
 
     [PunRPC]
     void OnNextBetTurn(int _nextTurn)
     {
-        //베팅 카운트 
-        countBetTurn = ((countBetTurn + 1) / 2) + 1;
-        //현재 베팅 가능한 유저
-        currentBetTurn = _nextTurn > 1 ? 0 : _nextTurn;
+        if (countBetTurn == 2 && (giveUpBet[0] || giveUpBet[1]))
+        {
+            print("open All Card and action");
+            ui.manaBet.Hide();
+            cardManager.OpenCard();
+        }
+        else {
+            //1 % 2 = 1 | 2 % 2 = 0 | 3 % 2 = 1 | 4 % 2 = 0 |
+            countBetTurn = (countBetTurn + 1) > 2 ? 1 : (countBetTurn + 1);
+            print("countBet = " + countBetTurn);
+            //현재 베팅 가능한 유저
+            currentBetTurn = currentBetTurn == 1 ? 0 : 1;
 
-
-        if (myID == currentTurn)
-            ui.manaBet.ViewBet();
+            if (myID == currentBetTurn)
+                ui.manaBet.ViewBet();
+            else
+                ui.manaBet.HideBet();
+        }
     }
 
     public void SendManaBet(int _manaBet)
@@ -199,6 +228,7 @@ public class GameManager : MonoBehaviour
     [PunRPC]
     public void OnManaBet(int _id, int _manaBet)
     {
+        print("Set Mana Bet" + _id + " = " + _manaBet);
         if (_manaBet == -1)
         {
             //give up
@@ -209,8 +239,11 @@ public class GameManager : MonoBehaviour
             manaBet[_id] += _manaBet;
         }
 
+        ui.manaBet.UpdateAllBet();
+
         if (_id == myID)
         {
+            print("is next turn");
             SendNextBetTurn();
         }
 

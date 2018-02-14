@@ -20,9 +20,19 @@ public class BatchSlot : MonoBehaviour
         group.BatchCard(index, _card);
     }
 
+    public void SendSetBatch(CardBehaviour _card, bool _isControlHand)
+    {
+        group.SendSetBatchCard(index, _card.index, _isControlHand);
+    }
+
     public void UnBatch()
     {
         group.BatchCard(index, null);
+    }
+
+    public void SendUnBatch(bool _isControlHand)
+    {
+        group.SendUnBatchCard(index, _isControlHand);
     }
 
     public bool IsAllowBatch()

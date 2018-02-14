@@ -50,4 +50,10 @@ MonoBehaviour:
   - GameStart
   - OnBatchCard
   - SendBatchCard
+  - SendDrawCard
+  - OnDrawCard
+  - OnSetBatchCard
+  - OnUnBatchCard
+  - OnAddHand
+  - OnSubHand
   DisableAutoOpenWizard: 1

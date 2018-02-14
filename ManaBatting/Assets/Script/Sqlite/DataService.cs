@@ -4,12 +4,25 @@ using UnityEngine;
 using System.Collections;
 using System.IO;
 #endif
+using System;
 using System.Collections.Generic;
 
 public class DataService
 {
-
     private SQLiteConnection _connection;
+
+    public SQLiteConnection Connection
+    {
+        get
+        {
+            return _connection;
+        }
+
+        set
+        {
+            Debug.LogError("Not Set Because Private Lock");
+        }
+    }
 
     public DataService(string DatabaseName)
     {
@@ -63,92 +76,7 @@ public class DataService
 #endif
         _connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create);
         Debug.Log("Final PATH: " + dbPath);
-
     }
 
-    public void CreateDB()
-    {
-        _connection.DropTable<Card>();
-        _connection.CreateTable<Card>();
 
-        _connection.InsertAll(new[]{
-            new Card{
-                name = "토마토 맞좀 봐라!",
-                explain = "상대에게 5 데미지를 입힙니다.",
-                id = 1,
-                cost = 1,
-                attack = 5,
-                depence = 0,
-                heal = 0,
-                buff = 1,
-                effectEventName = "TasteTomato"
-            },
-            new Card{
-                name = "토마토 맞좀 봐라!",
-                explain = "상대에게 5 데미지를 입힙니다.",
-                id = 2,
-                cost = 1,
-                attack = 5,
-                depence = 0,
-                heal = 0,
-                buff = 1,
-                effectEventName = "TasteTomato"
-            },
-            new Card{
-                name = "토마토 맞좀 봐라!",
-                explain = "상대에게 5 데미지를 입힙니다.",
-                id = 3,
-                cost = 1,
-                attack = 5,
-                depence = 0,
-                heal = 0,
-                buff = 1,
-                effectEventName = "TasteTomato"
-            },
-            new Card{
-                name = "한글",
-                explain = "상대에게 5 데미지를 입힙니다.",
-                id = 4,
-                cost = 1,
-                attack = 5,
-                depence = 0,
-                heal = 0,
-                buff = 1,
-                effectEventName = "TasteTomato"
-            }
-        });
-    }
-
-    public IEnumerable<Card> GetCards()
-    {
-        return _connection.Table<Card>();
-    }
-
-    public IEnumerable<Card> GetCardsNamedBanana()
-    {
-        return _connection.Table<Card>().Where(x => x.name == "한글");
-    }
-
-    public Card GetJohnny()
-    {
-        return _connection.Table<Card>().Where(x => x.name == "바나나").FirstOrDefault();
-    }
-
-    public Card CreateCard()
-    {
-        var p = new Card
-        {
-            name = "바나나",
-            explain = "상대에게 1 데미지를 입힙니다.",
-            id = 5,
-            cost = 1,
-            attack = 5,
-            depence = 0,
-            heal = 0,
-            buff = 1,
-            effectEventName = "TasteTomato"
-        };
-        _connection.Insert(p);
-        return p;
-    }
 }

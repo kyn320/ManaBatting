@@ -51,21 +51,26 @@ public class InputManager : MonoBehaviour
                     else if (!slot.IsEmpty())
                     {
                         CardBehaviour crossCard = slot.GetCard();
-                        if (selectCard.slot != null)
+                        //슬롯 < = > 슬롯 크로스 버그로 인한 개발 중지
+                        //if (selectCard.slot != null)
+                        //{
+                        //    BatchSlot crossSlot = selectCard.slot;
+                        //    print("slot to slot cross");
+                        //    //cross slot to slot change
+                        //    selectCard.SetSlot(slot, false, false);
+                        //    crossCard.SetSlot(crossSlot, false, false);
+                        //
+                        //    selectCard.slot.SendSetBatch(selectCard, false);
+                        //    crossCard.slot.SendSetBatch(crossCard, false);
+                        //}
+                        if (selectCard.slot == null)
                         {
-                            BatchSlot crossSlot = selectCard.slot;
-                            print("slot to slot cross");
-                            //cross slot to slot change
-                            selectCard.SetSlot(slot);
-                            crossCard.SetSlot(crossSlot);
-                        }
-                        else {
                             print("hand to slot cross");
                             //cross hand to slot change
-                            crossCard.AddHand();
-                            selectCard.SubHand();
-                            crossCard.UnSlot();
-                            selectCard.SetSlot(slot);
+                            //crossCard.AddHand();
+                            //selectCard.SubHand();
+                            crossCard.UnSlot(true, true);
+                            selectCard.SetSlot(slot, true, true);
                         }
                     }
                     else if (slot.IsEmpty())
@@ -74,15 +79,16 @@ public class InputManager : MonoBehaviour
                         //new set slot
                         if (selectCard.slot != null)
                         {
-                            selectCard.UnSlot();
+                            selectCard.UnSlot(true, true);
                         }
-                        else {
-                            selectCard.SubHand();
-                        }
-                        selectCard.SetSlot(slot);
+                        //else {
+                        //    selectCard.SubHand();
+                        //}
+                        selectCard.SetSlot(slot, true, true);
                     }
                 }
-                else {
+                else
+                {
                     print("other player card + " + slot.IsAllowBatch());
                     selectCard.SetReplaceOrign();
                     selectCard.SetSortingOrder();
@@ -93,10 +99,11 @@ public class InputManager : MonoBehaviour
             {
                 if (selectCard.slot != null)
                 {
-                    selectCard.UnSlot();
-                    selectCard.AddHand();
+                    selectCard.UnSlot(true, true);
+                    //selectCard.AddHand();
                 }
-                else {
+                else
+                {
                     selectCard.SetReplaceOrign();
                 }
                 selectCard.SetSortingOrder();

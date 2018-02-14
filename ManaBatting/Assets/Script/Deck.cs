@@ -10,9 +10,19 @@ public class Deck : MonoBehaviour
 
     public bool isMine;
 
+    public void AddDeck()
+    {
+        for (int i = 0; i < 12; ++i)
+        {
+            cardList.Add(CardDatabase.instance.dataList[i]);
+        }
+    }
+
     void Start()
     {
-        for (int i = 0; i < 5; ++i)
+        AddDeck();
+
+        for (int i = 0; i < 12; ++i)
         {
             DrawCard();
         }
