@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/Match.unity
+- path: Assets/Scene/HandCardTest.unity
   isLoaded: 1
   isActive: 1

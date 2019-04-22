@@ -3,41 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CardDatabase : MonoBehaviour
+public class CardDatabase : Singleton<CardDatabase>
 {
-    public static CardDatabase instance;
-
     public List<Card> dataList;
 
     private DataService ds;
 
-    void Awake() {
-        instance = this;
-
+    protected override void Awake()
+    {
+        base.Awake();
         ds = new DataService("CardDatabase.db");
         //CreateDB();
         StartSync();
     }
-
-    void Start()
-    {
-
-    }
-
+    
     private void StartSync()
     {
         dataList = GetCards();
         ToConsole(GetCards());
     }
 
-    private void ToConsole(Card _card)
+    private void ToConsole(Card card)
     {
-        print(_card.ToString());
+        print(card.ToString());
     }
 
-    private void ToConsole(IEnumerable<Card> _cardList)
+    private void ToConsole(IEnumerable<Card> cardList)
     {
-        foreach (var Card in _cardList)
+        foreach (var Card in cardList)
         {
             print(Card.ToString());
         }
@@ -60,10 +53,10 @@ public class CardDatabase : MonoBehaviour
                 heal = 0,
                 buff = 1,
                 effectEventName = "TasteTomato",
-                frontSpritePath = "eichi_RARE2_front",
+                frontSpritePath = "eichiRARE2front",
                 middleSpritePath = "f050",
                 backSpritePath = "1",
-                hideSpritePath = "eichi_RARE2_back"
+                hideSpritePath = "eichiRARE2back"
             },
             new Card{
                 id = 1,
@@ -76,10 +69,10 @@ public class CardDatabase : MonoBehaviour
                 heal = 0,
                 buff = 1,
                 effectEventName = "TasteTomato",
-                frontSpritePath = "eichi_RARE2_front",
+                frontSpritePath = "eichiRARE2front",
                 middleSpritePath = "f050",
                 backSpritePath = "1",
-                hideSpritePath = "eichi_RARE2_back"
+                hideSpritePath = "eichiRARE2back"
             }
         });
     }
@@ -89,24 +82,24 @@ public class CardDatabase : MonoBehaviour
         return ds.Connection.Table<Card>().ToList();
     }
 
-    public List<Card> GetCardsWithName(string _name)
+    public List<Card> GetCardsWithName(string name)
     {
-        return ds.Connection.Table<Card>().Where(x => x.name == _name).ToList();
+        return ds.Connection.Table<Card>().Where(x => x.name == name).ToList();
     }
 
-    public Card GetCardWithID(int _id)
+    public Card GetCardWithID(int id)
     {
-        return ds.Connection.Table<Card>().Where(x => x.id == _id).FirstOrDefault();
+        return ds.Connection.Table<Card>().Where(x => x.id == id).FirstOrDefault();
     }
 
-    public Card GetCardWithName(string _name)
+    public Card GetCardWithName(string name)
     {
-        return ds.Connection.Table<Card>().Where(x => x.name == _name).FirstOrDefault();
+        return ds.Connection.Table<Card>().Where(x => x.name == name).FirstOrDefault();
     }
 
-    public Card CreateCard(Card _card)
+    public Card CreateCard(Card card)
     {
-        var p = _card;
+        var p = card;
         ds.Connection.Insert(p);
         return p;
     }

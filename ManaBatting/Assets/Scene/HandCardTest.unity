@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 8
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -39,6 +39,7 @@ RenderSettings:
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,11 +55,10 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 40
-    m_TextureWidth: 1024
-    m_TextureHeight: 1024
+    m_AtlasSize: 1024
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -116,9 +116,9 @@ NavMeshSettings:
 --- !u!1 &17557366
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 17557370}
   - component: {fileID: 17557369}
@@ -134,7 +134,7 @@ GameObject:
 --- !u!114 &17557367
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 17557366}
   m_Enabled: 1
@@ -144,21 +144,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &17557368
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 17557366}
   m_Enabled: 1
@@ -183,7 +202,7 @@ BoxCollider2D:
 --- !u!212 &17557369
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 17557366}
   m_Enabled: 1
@@ -193,6 +212,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -224,10 +244,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &17557370
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 17557366}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -240,9 +261,9 @@ Transform:
 --- !u!1 &71562101
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 71562105}
   - component: {fileID: 71562104}
@@ -258,7 +279,7 @@ GameObject:
 --- !u!114 &71562102
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71562101}
   m_Enabled: 1
@@ -268,21 +289,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &71562103
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71562101}
   m_Enabled: 1
@@ -307,7 +347,7 @@ BoxCollider2D:
 --- !u!212 &71562104
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71562101}
   m_Enabled: 1
@@ -317,6 +357,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -348,10 +389,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &71562105
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 71562101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -364,9 +406,9 @@ Transform:
 --- !u!1 &125788652
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 125788656}
   - component: {fileID: 125788655}
@@ -382,7 +424,7 @@ GameObject:
 --- !u!114 &125788653
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125788652}
   m_Enabled: 1
@@ -392,21 +434,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &125788654
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125788652}
   m_Enabled: 1
@@ -431,7 +492,7 @@ BoxCollider2D:
 --- !u!212 &125788655
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125788652}
   m_Enabled: 1
@@ -441,6 +502,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -472,10 +534,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &125788656
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125788652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -488,9 +551,9 @@ Transform:
 --- !u!1 &130840901
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 130840905}
   - component: {fileID: 130840904}
@@ -506,7 +569,7 @@ GameObject:
 --- !u!114 &130840902
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130840901}
   m_Enabled: 1
@@ -516,21 +579,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &130840903
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130840901}
   m_Enabled: 1
@@ -555,7 +637,7 @@ BoxCollider2D:
 --- !u!212 &130840904
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130840901}
   m_Enabled: 1
@@ -565,6 +647,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -596,10 +679,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &130840905
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 130840901}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -612,9 +696,9 @@ Transform:
 --- !u!1 &200160974
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 200160978}
   - component: {fileID: 200160977}
@@ -630,7 +714,7 @@ GameObject:
 --- !u!114 &200160975
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 200160974}
   m_Enabled: 1
@@ -640,21 +724,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &200160976
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 200160974}
   m_Enabled: 1
@@ -679,7 +782,7 @@ BoxCollider2D:
 --- !u!212 &200160977
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 200160974}
   m_Enabled: 1
@@ -689,6 +792,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -720,10 +824,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &200160978
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 200160974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -736,9 +841,9 @@ Transform:
 --- !u!1 &309027367
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 309027371}
   - component: {fileID: 309027370}
@@ -754,7 +859,7 @@ GameObject:
 --- !u!114 &309027368
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 309027367}
   m_Enabled: 1
@@ -764,21 +869,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &309027369
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 309027367}
   m_Enabled: 1
@@ -803,7 +927,7 @@ BoxCollider2D:
 --- !u!212 &309027370
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 309027367}
   m_Enabled: 1
@@ -813,6 +937,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -844,10 +969,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &309027371
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 309027367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -860,9 +986,9 @@ Transform:
 --- !u!1 &316841213
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 316841217}
   - component: {fileID: 316841216}
@@ -878,7 +1004,7 @@ GameObject:
 --- !u!114 &316841214
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 316841213}
   m_Enabled: 1
@@ -888,21 +1014,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &316841215
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 316841213}
   m_Enabled: 1
@@ -927,7 +1072,7 @@ BoxCollider2D:
 --- !u!212 &316841216
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 316841213}
   m_Enabled: 1
@@ -937,6 +1082,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -968,10 +1114,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &316841217
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 316841213}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -984,9 +1131,9 @@ Transform:
 --- !u!1 &335138735
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 335138739}
   - component: {fileID: 335138738}
@@ -1002,7 +1149,7 @@ GameObject:
 --- !u!114 &335138736
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 335138735}
   m_Enabled: 1
@@ -1012,21 +1159,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &335138737
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 335138735}
   m_Enabled: 1
@@ -1051,7 +1217,7 @@ BoxCollider2D:
 --- !u!212 &335138738
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 335138735}
   m_Enabled: 1
@@ -1061,6 +1227,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -1092,10 +1259,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &335138739
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 335138735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1108,9 +1276,9 @@ Transform:
 --- !u!1 &347898664
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 347898666}
   - component: {fileID: 347898665}
@@ -1124,7 +1292,7 @@ GameObject:
 --- !u!114 &347898665
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 347898664}
   m_Enabled: 1
@@ -1134,6 +1302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 555817357}
   - {fileID: 350929797}
@@ -1143,12 +1312,12 @@ MonoBehaviour:
   - {fileID: 408865620}
   - {fileID: 1374544148}
   - {fileID: 1539242056}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &347898666
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 347898664}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1169,9 +1338,9 @@ Transform:
 --- !u!1 &350929796
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 350929800}
   - component: {fileID: 350929799}
@@ -1187,7 +1356,7 @@ GameObject:
 --- !u!114 &350929797
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 350929796}
   m_Enabled: 1
@@ -1197,21 +1366,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &350929798
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 350929796}
   m_Enabled: 1
@@ -1236,7 +1424,7 @@ BoxCollider2D:
 --- !u!212 &350929799
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 350929796}
   m_Enabled: 1
@@ -1246,6 +1434,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -1277,10 +1466,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &350929800
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 350929796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1290,12 +1480,100 @@ Transform:
   m_Father: {fileID: 347898666}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &372599702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 372599706}
+  - component: {fileID: 372599705}
+  - component: {fileID: 372599704}
+  - component: {fileID: 372599703}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &372599703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 372599702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 1
+  InstantiationId: 1
+  isRuntimeInstantiated: 0
+--- !u!114 &372599704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 372599702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4b96e3a72a7f54f89ed832e4e1a73b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectCard: {fileID: 0}
+--- !u!114 &372599705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 372599702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d64f61a167825734497ba4f3350b54b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDontDestroy: 1
+  ui: {fileID: 0}
+  isBatch: 0
+  baseMana: 0
+  manaBets: 
+  giveUpBets: 
+  readyForBatches: 
+  myID: 0
+  spinCoin: {fileID: 0}
+  whoFirst: -1
+  currentBetTurn: -1
+  countBetTurn: 0
+  currentTurn: 1
+--- !u!4 &372599706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 372599702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &405907383
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 405907387}
   - component: {fileID: 405907386}
@@ -1311,7 +1589,7 @@ GameObject:
 --- !u!114 &405907384
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405907383}
   m_Enabled: 1
@@ -1321,21 +1599,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &405907385
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405907383}
   m_Enabled: 1
@@ -1360,7 +1657,7 @@ BoxCollider2D:
 --- !u!212 &405907386
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405907383}
   m_Enabled: 1
@@ -1370,6 +1667,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -1401,10 +1699,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &405907387
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405907383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1417,9 +1716,9 @@ Transform:
 --- !u!1 &408865619
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 408865623}
   - component: {fileID: 408865622}
@@ -1435,7 +1734,7 @@ GameObject:
 --- !u!114 &408865620
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 408865619}
   m_Enabled: 1
@@ -1445,21 +1744,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &408865621
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 408865619}
   m_Enabled: 1
@@ -1484,7 +1802,7 @@ BoxCollider2D:
 --- !u!212 &408865622
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 408865619}
   m_Enabled: 1
@@ -1494,6 +1812,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -1525,10 +1844,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &408865623
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 408865619}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -1541,9 +1861,9 @@ Transform:
 --- !u!1 &499637862
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 499637864}
   - component: {fileID: 499637863}
@@ -1557,7 +1877,7 @@ GameObject:
 --- !u!114 &499637863
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 499637862}
   m_Enabled: 1
@@ -1567,6 +1887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 405907384}
   - {fileID: 2145373791}
@@ -1578,12 +1899,12 @@ MonoBehaviour:
   - {fileID: 1844312355}
   - {fileID: 818976133}
   - {fileID: 1739412504}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &499637864
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 499637862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1606,9 +1927,9 @@ Transform:
 --- !u!1 &536616603
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 536616607}
   - component: {fileID: 536616606}
@@ -1624,7 +1945,7 @@ GameObject:
 --- !u!114 &536616604
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 536616603}
   m_Enabled: 1
@@ -1634,21 +1955,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &536616605
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 536616603}
   m_Enabled: 1
@@ -1673,7 +2013,7 @@ BoxCollider2D:
 --- !u!212 &536616606
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 536616603}
   m_Enabled: 1
@@ -1683,6 +2023,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -1714,10 +2055,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &536616607
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 536616603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1730,9 +2072,9 @@ Transform:
 --- !u!1 &545150315
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 545150319}
   - component: {fileID: 545150318}
@@ -1748,7 +2090,7 @@ GameObject:
 --- !u!114 &545150316
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 545150315}
   m_Enabled: 1
@@ -1758,21 +2100,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &545150317
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 545150315}
   m_Enabled: 1
@@ -1797,7 +2158,7 @@ BoxCollider2D:
 --- !u!212 &545150318
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 545150315}
   m_Enabled: 1
@@ -1807,6 +2168,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -1838,10 +2200,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &545150319
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 545150315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1854,9 +2217,9 @@ Transform:
 --- !u!1 &555817356
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 555817360}
   - component: {fileID: 555817359}
@@ -1872,7 +2235,7 @@ GameObject:
 --- !u!114 &555817357
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 555817356}
   m_Enabled: 1
@@ -1882,21 +2245,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &555817358
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 555817356}
   m_Enabled: 1
@@ -1921,7 +2303,7 @@ BoxCollider2D:
 --- !u!212 &555817359
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 555817356}
   m_Enabled: 1
@@ -1931,6 +2313,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -1962,10 +2345,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &555817360
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 555817356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1978,9 +2362,9 @@ Transform:
 --- !u!1 &584993373
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 584993377}
   - component: {fileID: 584993376}
@@ -1996,7 +2380,7 @@ GameObject:
 --- !u!114 &584993374
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 584993373}
   m_Enabled: 1
@@ -2006,21 +2390,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &584993375
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 584993373}
   m_Enabled: 1
@@ -2045,7 +2448,7 @@ BoxCollider2D:
 --- !u!212 &584993376
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 584993373}
   m_Enabled: 1
@@ -2055,6 +2458,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -2086,10 +2490,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &584993377
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 584993373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2102,9 +2507,9 @@ Transform:
 --- !u!1 &684680098
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 684680102}
   - component: {fileID: 684680101}
@@ -2120,7 +2525,7 @@ GameObject:
 --- !u!114 &684680099
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 684680098}
   m_Enabled: 1
@@ -2130,21 +2535,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &684680100
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 684680098}
   m_Enabled: 1
@@ -2169,7 +2593,7 @@ BoxCollider2D:
 --- !u!212 &684680101
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 684680098}
   m_Enabled: 1
@@ -2179,6 +2603,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -2210,10 +2635,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &684680102
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 684680098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2226,9 +2652,9 @@ Transform:
 --- !u!1 &684791052
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 684791056}
   - component: {fileID: 684791055}
@@ -2244,27 +2670,31 @@ GameObject:
 --- !u!81 &684791053
 AudioListener:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 684791052}
   m_Enabled: 1
 --- !u!124 &684791054
 Behaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 684791052}
   m_Enabled: 1
 --- !u!20 &684791055
 Camera:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 684791052}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2294,7 +2724,7 @@ Camera:
 --- !u!4 &684791056
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 684791052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2307,9 +2737,9 @@ Transform:
 --- !u!1 &760949755
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 760949759}
   - component: {fileID: 760949758}
@@ -2325,7 +2755,7 @@ GameObject:
 --- !u!114 &760949756
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 760949755}
   m_Enabled: 1
@@ -2335,21 +2765,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &760949757
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 760949755}
   m_Enabled: 1
@@ -2374,7 +2823,7 @@ BoxCollider2D:
 --- !u!212 &760949758
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 760949755}
   m_Enabled: 1
@@ -2384,6 +2833,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -2415,10 +2865,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &760949759
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 760949755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2431,9 +2882,9 @@ Transform:
 --- !u!1 &772752727
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 772752728}
   - component: {fileID: 772752731}
@@ -2449,7 +2900,7 @@ GameObject:
 --- !u!4 &772752728
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 772752727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2462,7 +2913,7 @@ Transform:
 --- !u!61 &772752729
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 772752727}
   m_Enabled: 1
@@ -2487,7 +2938,7 @@ BoxCollider2D:
 --- !u!114 &772752730
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 772752727}
   m_Enabled: 1
@@ -2497,21 +2948,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &772752731
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 772752727}
   m_Enabled: 1
@@ -2521,6 +2991,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -2552,12 +3023,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &774776290
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 774776294}
   - component: {fileID: 774776293}
@@ -2573,7 +3045,7 @@ GameObject:
 --- !u!114 &774776291
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 774776290}
   m_Enabled: 1
@@ -2583,21 +3055,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &774776292
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 774776290}
   m_Enabled: 1
@@ -2622,7 +3113,7 @@ BoxCollider2D:
 --- !u!212 &774776293
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 774776290}
   m_Enabled: 1
@@ -2632,6 +3123,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -2663,10 +3155,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &774776294
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 774776290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -2679,9 +3172,9 @@ Transform:
 --- !u!1 &797094770
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 797094774}
   - component: {fileID: 797094773}
@@ -2697,7 +3190,7 @@ GameObject:
 --- !u!114 &797094771
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 797094770}
   m_Enabled: 1
@@ -2707,21 +3200,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &797094772
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 797094770}
   m_Enabled: 1
@@ -2746,7 +3258,7 @@ BoxCollider2D:
 --- !u!212 &797094773
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 797094770}
   m_Enabled: 1
@@ -2756,6 +3268,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -2787,10 +3300,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &797094774
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 797094770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -2803,9 +3317,9 @@ Transform:
 --- !u!1 &818976132
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 818976136}
   - component: {fileID: 818976135}
@@ -2821,7 +3335,7 @@ GameObject:
 --- !u!114 &818976133
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818976132}
   m_Enabled: 1
@@ -2831,21 +3345,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &818976134
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818976132}
   m_Enabled: 1
@@ -2870,7 +3403,7 @@ BoxCollider2D:
 --- !u!212 &818976135
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818976132}
   m_Enabled: 1
@@ -2880,6 +3413,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -2911,10 +3445,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &818976136
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 818976132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -2927,9 +3462,9 @@ Transform:
 --- !u!1 &829412428
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 829412432}
   - component: {fileID: 829412431}
@@ -2945,7 +3480,7 @@ GameObject:
 --- !u!114 &829412429
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 829412428}
   m_Enabled: 1
@@ -2955,21 +3490,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &829412430
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 829412428}
   m_Enabled: 1
@@ -2994,7 +3548,7 @@ BoxCollider2D:
 --- !u!212 &829412431
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 829412428}
   m_Enabled: 1
@@ -3004,6 +3558,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -3035,10 +3590,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &829412432
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 829412428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3051,9 +3607,9 @@ Transform:
 --- !u!1 &838450693
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 838450695}
   - component: {fileID: 838450694}
@@ -3067,7 +3623,7 @@ GameObject:
 --- !u!114 &838450694
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 838450693}
   m_Enabled: 1
@@ -3077,14 +3633,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 1876929741}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &838450695
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 838450693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3102,9 +3659,9 @@ Transform:
 --- !u!1 &844329886
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 844329888}
   - component: {fileID: 844329887}
@@ -3118,7 +3675,7 @@ GameObject:
 --- !u!114 &844329887
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 844329886}
   m_Enabled: 1
@@ -3128,6 +3685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 2017179618}
   - {fileID: 130840902}
@@ -3135,12 +3693,12 @@ MonoBehaviour:
   - {fileID: 990168961}
   - {fileID: 536616604}
   - {fileID: 1709051049}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &844329888
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 844329886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3159,9 +3717,9 @@ Transform:
 --- !u!1 &860267232
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 860267236}
   - component: {fileID: 860267235}
@@ -3177,7 +3735,7 @@ GameObject:
 --- !u!114 &860267233
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 860267232}
   m_Enabled: 1
@@ -3187,21 +3745,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &860267234
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 860267232}
   m_Enabled: 1
@@ -3226,7 +3803,7 @@ BoxCollider2D:
 --- !u!212 &860267235
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 860267232}
   m_Enabled: 1
@@ -3236,6 +3813,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -3267,10 +3845,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &860267236
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 860267232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3283,9 +3862,9 @@ Transform:
 --- !u!1 &890955920
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 890955921}
   - component: {fileID: 890955924}
@@ -3301,7 +3880,7 @@ GameObject:
 --- !u!4 &890955921
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 890955920}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3314,7 +3893,7 @@ Transform:
 --- !u!61 &890955922
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 890955920}
   m_Enabled: 1
@@ -3339,7 +3918,7 @@ BoxCollider2D:
 --- !u!114 &890955923
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 890955920}
   m_Enabled: 1
@@ -3349,21 +3928,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &890955924
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 890955920}
   m_Enabled: 1
@@ -3373,6 +3971,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -3404,12 +4003,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &896148216
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 896148220}
   - component: {fileID: 896148219}
@@ -3425,7 +4025,7 @@ GameObject:
 --- !u!114 &896148217
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 896148216}
   m_Enabled: 1
@@ -3435,21 +4035,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &896148218
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 896148216}
   m_Enabled: 1
@@ -3474,7 +4093,7 @@ BoxCollider2D:
 --- !u!212 &896148219
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 896148216}
   m_Enabled: 1
@@ -3484,6 +4103,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -3515,10 +4135,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &896148220
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 896148216}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3531,9 +4152,9 @@ Transform:
 --- !u!1 &973478904
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 973478908}
   - component: {fileID: 973478907}
@@ -3549,7 +4170,7 @@ GameObject:
 --- !u!114 &973478905
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 973478904}
   m_Enabled: 1
@@ -3559,21 +4180,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &973478906
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 973478904}
   m_Enabled: 1
@@ -3598,7 +4238,7 @@ BoxCollider2D:
 --- !u!212 &973478907
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 973478904}
   m_Enabled: 1
@@ -3608,6 +4248,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -3639,10 +4280,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &973478908
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 973478904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3655,9 +4297,9 @@ Transform:
 --- !u!1 &990168960
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 990168964}
   - component: {fileID: 990168963}
@@ -3673,7 +4315,7 @@ GameObject:
 --- !u!114 &990168961
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 990168960}
   m_Enabled: 1
@@ -3683,21 +4325,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &990168962
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 990168960}
   m_Enabled: 1
@@ -3722,7 +4383,7 @@ BoxCollider2D:
 --- !u!212 &990168963
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 990168960}
   m_Enabled: 1
@@ -3732,6 +4393,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -3763,10 +4425,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &990168964
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 990168960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3779,9 +4442,9 @@ Transform:
 --- !u!1 &1001862031
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1001862035}
   - component: {fileID: 1001862034}
@@ -3797,7 +4460,7 @@ GameObject:
 --- !u!114 &1001862032
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1001862031}
   m_Enabled: 1
@@ -3807,21 +4470,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1001862033
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1001862031}
   m_Enabled: 1
@@ -3846,7 +4528,7 @@ BoxCollider2D:
 --- !u!212 &1001862034
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1001862031}
   m_Enabled: 1
@@ -3856,6 +4538,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -3887,10 +4570,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1001862035
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1001862031}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -3903,9 +4587,9 @@ Transform:
 --- !u!1 &1007292153
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1007292155}
   - component: {fileID: 1007292154}
@@ -3919,7 +4603,7 @@ GameObject:
 --- !u!114 &1007292154
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1007292153}
   m_Enabled: 1
@@ -3929,15 +4613,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 545150316}
   - {fileID: 1272935321}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &1007292155
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1007292153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3955,9 +4640,9 @@ Transform:
 --- !u!1 &1017391043
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1017391044}
   - component: {fileID: 1017391047}
@@ -3973,7 +4658,7 @@ GameObject:
 --- !u!4 &1017391044
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1017391043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3986,7 +4671,7 @@ Transform:
 --- !u!61 &1017391045
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1017391043}
   m_Enabled: 1
@@ -4011,7 +4696,7 @@ BoxCollider2D:
 --- !u!114 &1017391046
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1017391043}
   m_Enabled: 1
@@ -4021,21 +4706,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &1017391047
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1017391043}
   m_Enabled: 1
@@ -4045,6 +4749,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -4076,12 +4781,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1033869370
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1033869372}
   - component: {fileID: 1033869371}
@@ -4095,7 +4801,7 @@ GameObject:
 --- !u!114 &1033869371
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1033869370}
   m_Enabled: 1
@@ -4105,6 +4811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 1492096611}
   - {fileID: 200160975}
@@ -4113,12 +4820,12 @@ MonoBehaviour:
   - {fileID: 684680099}
   - {fileID: 17557367}
   - {fileID: 1136650855}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &1033869372
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1033869370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4138,9 +4845,9 @@ Transform:
 --- !u!1 &1058811018
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1058811019}
   - component: {fileID: 1058811022}
@@ -4156,7 +4863,7 @@ GameObject:
 --- !u!4 &1058811019
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1058811018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4169,7 +4876,7 @@ Transform:
 --- !u!61 &1058811020
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1058811018}
   m_Enabled: 1
@@ -4194,7 +4901,7 @@ BoxCollider2D:
 --- !u!114 &1058811021
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1058811018}
   m_Enabled: 1
@@ -4204,21 +4911,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &1058811022
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1058811018}
   m_Enabled: 1
@@ -4228,6 +4954,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -4259,12 +4986,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1059692348
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1059692352}
   - component: {fileID: 1059692351}
@@ -4280,7 +5008,7 @@ GameObject:
 --- !u!114 &1059692349
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1059692348}
   m_Enabled: 1
@@ -4290,21 +5018,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1059692350
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1059692348}
   m_Enabled: 1
@@ -4329,7 +5076,7 @@ BoxCollider2D:
 --- !u!212 &1059692351
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1059692348}
   m_Enabled: 1
@@ -4339,6 +5086,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -4370,10 +5118,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1059692352
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1059692348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4386,9 +5135,9 @@ Transform:
 --- !u!1 &1075415803
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1075415805}
   - component: {fileID: 1075415804}
@@ -4402,7 +5151,7 @@ GameObject:
 --- !u!114 &1075415804
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1075415803}
   m_Enabled: 1
@@ -4412,16 +5161,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 1332152489}
   - {fileID: 760949756}
   - {fileID: 1541018071}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &1075415805
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1075415803}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4439,9 +5189,9 @@ Transform:
 --- !u!1 &1087479882
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1087479883}
   - component: {fileID: 1087479886}
@@ -4457,7 +5207,7 @@ GameObject:
 --- !u!4 &1087479883
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1087479882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4470,7 +5220,7 @@ Transform:
 --- !u!61 &1087479884
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1087479882}
   m_Enabled: 1
@@ -4495,7 +5245,7 @@ BoxCollider2D:
 --- !u!114 &1087479885
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1087479882}
   m_Enabled: 1
@@ -4505,21 +5255,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &1087479886
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1087479882}
   m_Enabled: 1
@@ -4529,6 +5298,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -4560,12 +5330,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1126501869
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1126501870}
   - component: {fileID: 1126501873}
@@ -4581,7 +5352,7 @@ GameObject:
 --- !u!4 &1126501870
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1126501869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4594,7 +5365,7 @@ Transform:
 --- !u!61 &1126501871
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1126501869}
   m_Enabled: 1
@@ -4619,7 +5390,7 @@ BoxCollider2D:
 --- !u!114 &1126501872
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1126501869}
   m_Enabled: 1
@@ -4629,21 +5400,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &1126501873
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1126501869}
   m_Enabled: 1
@@ -4653,6 +5443,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -4684,12 +5475,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1126558004
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1126558006}
   - component: {fileID: 1126558005}
@@ -4703,7 +5495,7 @@ GameObject:
 --- !u!114 &1126558005
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1126558004}
   m_Enabled: 1
@@ -4713,17 +5505,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 1749276289}
   - {fileID: 71562102}
   - {fileID: 2011189963}
   - {fileID: 335138736}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &1126558006
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1126558004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4741,9 +5534,9 @@ Transform:
 --- !u!1 &1132119603
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1132119607}
   - component: {fileID: 1132119606}
@@ -4759,7 +5552,7 @@ GameObject:
 --- !u!114 &1132119604
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1132119603}
   m_Enabled: 1
@@ -4769,21 +5562,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1132119605
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1132119603}
   m_Enabled: 1
@@ -4808,7 +5620,7 @@ BoxCollider2D:
 --- !u!212 &1132119606
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1132119603}
   m_Enabled: 1
@@ -4818,6 +5630,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -4849,10 +5662,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1132119607
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1132119603}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -4865,9 +5679,9 @@ Transform:
 --- !u!1 &1136650854
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1136650858}
   - component: {fileID: 1136650857}
@@ -4883,7 +5697,7 @@ GameObject:
 --- !u!114 &1136650855
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1136650854}
   m_Enabled: 1
@@ -4893,21 +5707,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1136650856
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1136650854}
   m_Enabled: 1
@@ -4932,7 +5765,7 @@ BoxCollider2D:
 --- !u!212 &1136650857
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1136650854}
   m_Enabled: 1
@@ -4942,6 +5775,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -4973,10 +5807,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1136650858
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1136650854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -4989,9 +5824,9 @@ Transform:
 --- !u!1 &1146818357
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1146818361}
   - component: {fileID: 1146818360}
@@ -5007,7 +5842,7 @@ GameObject:
 --- !u!114 &1146818358
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146818357}
   m_Enabled: 1
@@ -5017,21 +5852,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1146818359
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146818357}
   m_Enabled: 1
@@ -5056,7 +5910,7 @@ BoxCollider2D:
 --- !u!212 &1146818360
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146818357}
   m_Enabled: 1
@@ -5066,6 +5920,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -5097,10 +5952,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1146818361
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146818357}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5113,9 +5969,9 @@ Transform:
 --- !u!1 &1216012542
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1216012543}
   - component: {fileID: 1216012546}
@@ -5131,7 +5987,7 @@ GameObject:
 --- !u!4 &1216012543
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1216012542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5144,7 +6000,7 @@ Transform:
 --- !u!61 &1216012544
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1216012542}
   m_Enabled: 1
@@ -5169,7 +6025,7 @@ BoxCollider2D:
 --- !u!114 &1216012545
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1216012542}
   m_Enabled: 1
@@ -5179,21 +6035,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &1216012546
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1216012542}
   m_Enabled: 1
@@ -5203,6 +6078,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -5234,12 +6110,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1272235701
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1272235703}
   - component: {fileID: 1272235702}
@@ -5253,7 +6130,7 @@ GameObject:
 --- !u!114 &1272235702
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272235701}
   m_Enabled: 1
@@ -5263,6 +6140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 309027368}
   - {fileID: 973478905}
@@ -5273,12 +6151,12 @@ MonoBehaviour:
   - {fileID: 1001862032}
   - {fileID: 774776291}
   - {fileID: 797094771}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &1272235703
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272235701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5300,9 +6178,9 @@ Transform:
 --- !u!1 &1272935320
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1272935324}
   - component: {fileID: 1272935323}
@@ -5318,7 +6196,7 @@ GameObject:
 --- !u!114 &1272935321
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272935320}
   m_Enabled: 1
@@ -5328,21 +6206,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1272935322
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272935320}
   m_Enabled: 1
@@ -5367,7 +6264,7 @@ BoxCollider2D:
 --- !u!212 &1272935323
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272935320}
   m_Enabled: 1
@@ -5377,6 +6274,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -5408,10 +6306,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1272935324
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1272935320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5424,9 +6323,9 @@ Transform:
 --- !u!1 &1325018647
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1325018651}
   - component: {fileID: 1325018650}
@@ -5442,7 +6341,7 @@ GameObject:
 --- !u!114 &1325018648
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1325018647}
   m_Enabled: 1
@@ -5452,21 +6351,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1325018649
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1325018647}
   m_Enabled: 1
@@ -5491,7 +6409,7 @@ BoxCollider2D:
 --- !u!212 &1325018650
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1325018647}
   m_Enabled: 1
@@ -5501,6 +6419,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -5532,10 +6451,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1325018651
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1325018647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -5548,9 +6468,9 @@ Transform:
 --- !u!1 &1332152488
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1332152492}
   - component: {fileID: 1332152491}
@@ -5566,7 +6486,7 @@ GameObject:
 --- !u!114 &1332152489
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1332152488}
   m_Enabled: 1
@@ -5576,21 +6496,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1332152490
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1332152488}
   m_Enabled: 1
@@ -5615,7 +6554,7 @@ BoxCollider2D:
 --- !u!212 &1332152491
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1332152488}
   m_Enabled: 1
@@ -5625,6 +6564,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -5656,10 +6596,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1332152492
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1332152488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5672,9 +6613,9 @@ Transform:
 --- !u!1 &1349455441
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1349455442}
   - component: {fileID: 1349455445}
@@ -5690,7 +6631,7 @@ GameObject:
 --- !u!4 &1349455442
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1349455441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5703,7 +6644,7 @@ Transform:
 --- !u!61 &1349455443
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1349455441}
   m_Enabled: 1
@@ -5728,7 +6669,7 @@ BoxCollider2D:
 --- !u!114 &1349455444
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1349455441}
   m_Enabled: 1
@@ -5738,21 +6679,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &1349455445
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1349455441}
   m_Enabled: 1
@@ -5762,6 +6722,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -5793,12 +6754,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1374544147
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1374544151}
   - component: {fileID: 1374544150}
@@ -5814,7 +6776,7 @@ GameObject:
 --- !u!114 &1374544148
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1374544147}
   m_Enabled: 1
@@ -5824,21 +6786,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1374544149
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1374544147}
   m_Enabled: 1
@@ -5863,7 +6844,7 @@ BoxCollider2D:
 --- !u!212 &1374544150
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1374544147}
   m_Enabled: 1
@@ -5873,6 +6854,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -5904,10 +6886,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1374544151
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1374544147}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -5920,9 +6903,9 @@ Transform:
 --- !u!1 &1401782358
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1401782359}
   - component: {fileID: 1401782362}
@@ -5938,7 +6921,7 @@ GameObject:
 --- !u!4 &1401782359
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401782358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -5951,7 +6934,7 @@ Transform:
 --- !u!61 &1401782360
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401782358}
   m_Enabled: 1
@@ -5976,7 +6959,7 @@ BoxCollider2D:
 --- !u!114 &1401782361
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401782358}
   m_Enabled: 1
@@ -5986,21 +6969,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &1401782362
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1401782358}
   m_Enabled: 1
@@ -6010,6 +7012,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -6041,12 +7044,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1426082639
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1426082643}
   - component: {fileID: 1426082642}
@@ -6062,7 +7066,7 @@ GameObject:
 --- !u!114 &1426082640
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1426082639}
   m_Enabled: 1
@@ -6072,21 +7076,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1426082641
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1426082639}
   m_Enabled: 1
@@ -6111,7 +7134,7 @@ BoxCollider2D:
 --- !u!212 &1426082642
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1426082639}
   m_Enabled: 1
@@ -6121,6 +7144,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -6152,10 +7176,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1426082643
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1426082639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6168,9 +7193,9 @@ Transform:
 --- !u!1 &1446751010
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1446751014}
   - component: {fileID: 1446751013}
@@ -6186,7 +7211,7 @@ GameObject:
 --- !u!114 &1446751011
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1446751010}
   m_Enabled: 1
@@ -6196,21 +7221,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1446751012
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1446751010}
   m_Enabled: 1
@@ -6235,7 +7279,7 @@ BoxCollider2D:
 --- !u!212 &1446751013
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1446751010}
   m_Enabled: 1
@@ -6245,6 +7289,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -6276,10 +7321,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1446751014
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1446751010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -6292,9 +7338,9 @@ Transform:
 --- !u!1 &1492096610
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1492096614}
   - component: {fileID: 1492096613}
@@ -6310,7 +7356,7 @@ GameObject:
 --- !u!114 &1492096611
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1492096610}
   m_Enabled: 1
@@ -6320,21 +7366,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1492096612
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1492096610}
   m_Enabled: 1
@@ -6359,7 +7424,7 @@ BoxCollider2D:
 --- !u!212 &1492096613
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1492096610}
   m_Enabled: 1
@@ -6369,6 +7434,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -6400,10 +7466,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1492096614
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1492096610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6416,9 +7483,9 @@ Transform:
 --- !u!1 &1539242055
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1539242059}
   - component: {fileID: 1539242058}
@@ -6434,7 +7501,7 @@ GameObject:
 --- !u!114 &1539242056
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1539242055}
   m_Enabled: 1
@@ -6444,21 +7511,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1539242057
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1539242055}
   m_Enabled: 1
@@ -6483,7 +7569,7 @@ BoxCollider2D:
 --- !u!212 &1539242058
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1539242055}
   m_Enabled: 1
@@ -6493,6 +7579,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -6524,10 +7611,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1539242059
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1539242055}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -6540,9 +7628,9 @@ Transform:
 --- !u!1 &1541018070
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1541018074}
   - component: {fileID: 1541018073}
@@ -6558,7 +7646,7 @@ GameObject:
 --- !u!114 &1541018071
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1541018070}
   m_Enabled: 1
@@ -6568,21 +7656,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1541018072
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1541018070}
   m_Enabled: 1
@@ -6607,7 +7714,7 @@ BoxCollider2D:
 --- !u!212 &1541018073
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1541018070}
   m_Enabled: 1
@@ -6617,6 +7724,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -6648,10 +7756,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1541018074
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1541018070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6664,9 +7773,9 @@ Transform:
 --- !u!1 &1662855835
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1662855839}
   - component: {fileID: 1662855838}
@@ -6682,7 +7791,7 @@ GameObject:
 --- !u!114 &1662855836
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1662855835}
   m_Enabled: 1
@@ -6692,21 +7801,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1662855837
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1662855835}
   m_Enabled: 1
@@ -6731,7 +7859,7 @@ BoxCollider2D:
 --- !u!212 &1662855838
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1662855835}
   m_Enabled: 1
@@ -6741,6 +7869,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -6772,10 +7901,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1662855839
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1662855835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6788,9 +7918,9 @@ Transform:
 --- !u!1 &1669233164
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1669233165}
   - component: {fileID: 1669233168}
@@ -6806,7 +7936,7 @@ GameObject:
 --- !u!4 &1669233165
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1669233164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6819,7 +7949,7 @@ Transform:
 --- !u!61 &1669233166
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1669233164}
   m_Enabled: 1
@@ -6844,7 +7974,7 @@ BoxCollider2D:
 --- !u!114 &1669233167
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1669233164}
   m_Enabled: 1
@@ -6854,21 +7984,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!212 &1669233168
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1669233164}
   m_Enabled: 1
@@ -6878,6 +8027,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -6909,12 +8059,13 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1704875937
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1704875939}
   - component: {fileID: 1704875938}
@@ -6928,7 +8079,7 @@ GameObject:
 --- !u!114 &1704875938
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1704875937}
   m_Enabled: 1
@@ -6938,18 +8089,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   mana: 0
+  cardPrefab: {fileID: 0}
   cardList:
   - {fileID: 1059692349}
   - {fileID: 896148217}
   - {fileID: 584993374}
   - {fileID: 125788653}
   - {fileID: 1662855836}
-  totalTwist: 20
+  totalTwist: 40
   cardPerDistance: 4
 --- !u!4 &1704875939
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1704875937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6967,9 +8119,9 @@ Transform:
 --- !u!1 &1709051048
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1709051052}
   - component: {fileID: 1709051051}
@@ -6985,7 +8137,7 @@ GameObject:
 --- !u!114 &1709051049
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709051048}
   m_Enabled: 1
@@ -6995,21 +8147,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1709051050
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709051048}
   m_Enabled: 1
@@ -7034,7 +8205,7 @@ BoxCollider2D:
 --- !u!212 &1709051051
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709051048}
   m_Enabled: 1
@@ -7044,6 +8215,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -7075,10 +8247,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1709051052
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709051048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -7091,9 +8264,9 @@ Transform:
 --- !u!1 &1739412503
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1739412507}
   - component: {fileID: 1739412506}
@@ -7109,7 +8282,7 @@ GameObject:
 --- !u!114 &1739412504
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1739412503}
   m_Enabled: 1
@@ -7119,21 +8292,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1739412505
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1739412503}
   m_Enabled: 1
@@ -7158,7 +8350,7 @@ BoxCollider2D:
 --- !u!212 &1739412506
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1739412503}
   m_Enabled: 1
@@ -7168,6 +8360,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -7199,10 +8392,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1739412507
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1739412503}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -7215,9 +8409,9 @@ Transform:
 --- !u!1 &1745600179
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1745600183}
   - component: {fileID: 1745600182}
@@ -7233,7 +8427,7 @@ GameObject:
 --- !u!114 &1745600180
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1745600179}
   m_Enabled: 1
@@ -7243,21 +8437,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1745600181
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1745600179}
   m_Enabled: 1
@@ -7282,7 +8495,7 @@ BoxCollider2D:
 --- !u!212 &1745600182
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1745600179}
   m_Enabled: 1
@@ -7292,6 +8505,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -7323,10 +8537,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1745600183
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1745600179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -7339,9 +8554,9 @@ Transform:
 --- !u!1 &1749276288
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1749276292}
   - component: {fileID: 1749276291}
@@ -7357,7 +8572,7 @@ GameObject:
 --- !u!114 &1749276289
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1749276288}
   m_Enabled: 1
@@ -7367,21 +8582,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1749276290
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1749276288}
   m_Enabled: 1
@@ -7406,7 +8640,7 @@ BoxCollider2D:
 --- !u!212 &1749276291
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1749276288}
   m_Enabled: 1
@@ -7416,6 +8650,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -7447,10 +8682,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1749276292
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1749276288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -7463,9 +8699,9 @@ Transform:
 --- !u!1 &1775263945
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1775263949}
   - component: {fileID: 1775263948}
@@ -7481,7 +8717,7 @@ GameObject:
 --- !u!114 &1775263946
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1775263945}
   m_Enabled: 1
@@ -7491,21 +8727,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1775263947
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1775263945}
   m_Enabled: 1
@@ -7530,7 +8785,7 @@ BoxCollider2D:
 --- !u!212 &1775263948
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1775263945}
   m_Enabled: 1
@@ -7540,6 +8795,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -7571,10 +8827,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1775263949
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1775263945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -7587,9 +8844,9 @@ Transform:
 --- !u!1 &1786889827
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1786889831}
   - component: {fileID: 1786889830}
@@ -7605,7 +8862,7 @@ GameObject:
 --- !u!114 &1786889828
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1786889827}
   m_Enabled: 1
@@ -7615,21 +8872,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1786889829
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1786889827}
   m_Enabled: 1
@@ -7654,7 +8930,7 @@ BoxCollider2D:
 --- !u!212 &1786889830
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1786889827}
   m_Enabled: 1
@@ -7664,6 +8940,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -7695,10 +8972,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1786889831
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1786889827}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -7711,9 +8989,9 @@ Transform:
 --- !u!1 &1813547956
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1813547960}
   - component: {fileID: 1813547959}
@@ -7729,7 +9007,7 @@ GameObject:
 --- !u!114 &1813547957
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1813547956}
   m_Enabled: 1
@@ -7739,21 +9017,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1813547958
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1813547956}
   m_Enabled: 1
@@ -7778,7 +9075,7 @@ BoxCollider2D:
 --- !u!212 &1813547959
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1813547956}
   m_Enabled: 1
@@ -7788,6 +9085,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -7819,10 +9117,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1813547960
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1813547956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -7835,9 +9134,9 @@ Transform:
 --- !u!1 &1844312354
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1844312358}
   - component: {fileID: 1844312357}
@@ -7853,7 +9152,7 @@ GameObject:
 --- !u!114 &1844312355
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1844312354}
   m_Enabled: 1
@@ -7863,21 +9162,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1844312356
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1844312354}
   m_Enabled: 1
@@ -7902,7 +9220,7 @@ BoxCollider2D:
 --- !u!212 &1844312357
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1844312354}
   m_Enabled: 1
@@ -7912,6 +9230,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -7943,10 +9262,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1844312358
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1844312354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -7956,12 +9276,63 @@ Transform:
   m_Father: {fileID: 499637864}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1851774535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1851774537}
+  - component: {fileID: 1851774536}
+  m_Layer: 0
+  m_Name: CardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1851774536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1851774535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc192dc552cfbd548927f87d13f9371c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDontDestroy: 1
+  lastOpenIndex: -1
+  handCards:
+  - {fileID: 0}
+  - {fileID: 0}
+  batchCardGroups:
+  - {fileID: 0}
+  - {fileID: 0}
+  openCard:
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!4 &1851774537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1851774535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.08319019, y: 1.4934902, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1876929740
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1876929744}
   - component: {fileID: 1876929743}
@@ -7977,7 +9348,7 @@ GameObject:
 --- !u!114 &1876929741
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1876929740}
   m_Enabled: 1
@@ -7987,21 +9358,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1876929742
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1876929740}
   m_Enabled: 1
@@ -8026,7 +9416,7 @@ BoxCollider2D:
 --- !u!212 &1876929743
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1876929740}
   m_Enabled: 1
@@ -8036,6 +9426,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -8067,10 +9458,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1876929744
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1876929740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -8083,9 +9475,9 @@ Transform:
 --- !u!1 &1972687952
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 1972687956}
   - component: {fileID: 1972687955}
@@ -8101,7 +9493,7 @@ GameObject:
 --- !u!114 &1972687953
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1972687952}
   m_Enabled: 1
@@ -8111,21 +9503,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 124bd8242adb54947a792310bcdf5fff, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 05e99754550b3134ab96df9f869503b5, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &1972687954
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1972687952}
   m_Enabled: 1
@@ -8150,7 +9561,7 @@ BoxCollider2D:
 --- !u!212 &1972687955
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1972687952}
   m_Enabled: 1
@@ -8160,6 +9571,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -8191,10 +9603,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &1972687956
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1972687952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -8207,9 +9620,9 @@ Transform:
 --- !u!1 &2008160109
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 2008160113}
   - component: {fileID: 2008160112}
@@ -8225,7 +9638,7 @@ GameObject:
 --- !u!114 &2008160110
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2008160109}
   m_Enabled: 1
@@ -8235,21 +9648,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 66d2fa225500214499ecea43898dec7b, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: 51f509d975b6e1f42b84ee3eb153a415, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &2008160111
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2008160109}
   m_Enabled: 1
@@ -8274,7 +9706,7 @@ BoxCollider2D:
 --- !u!212 &2008160112
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2008160109}
   m_Enabled: 1
@@ -8284,6 +9716,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -8315,10 +9748,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &2008160113
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2008160109}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -8331,9 +9765,9 @@ Transform:
 --- !u!1 &2011189962
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 2011189966}
   - component: {fileID: 2011189965}
@@ -8349,7 +9783,7 @@ GameObject:
 --- !u!114 &2011189963
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2011189962}
   m_Enabled: 1
@@ -8359,21 +9793,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &2011189964
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2011189962}
   m_Enabled: 1
@@ -8398,7 +9851,7 @@ BoxCollider2D:
 --- !u!212 &2011189965
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2011189962}
   m_Enabled: 1
@@ -8408,6 +9861,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -8439,10 +9893,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &2011189966
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2011189962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -8455,9 +9910,9 @@ Transform:
 --- !u!1 &2017179617
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 2017179621}
   - component: {fileID: 2017179620}
@@ -8473,7 +9928,7 @@ GameObject:
 --- !u!114 &2017179618
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2017179617}
   m_Enabled: 1
@@ -8483,21 +9938,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: ad1a327e70f20e347984b4ed00c91530, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ecb52c9db4d83e747b116aec52805f39, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &2017179619
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2017179617}
   m_Enabled: 1
@@ -8522,7 +9996,7 @@ BoxCollider2D:
 --- !u!212 &2017179620
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2017179617}
   m_Enabled: 1
@@ -8532,6 +10006,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -8563,10 +10038,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &2017179621
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2017179617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -8579,9 +10055,9 @@ Transform:
 --- !u!1 &2055248852
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 2055248856}
   - component: {fileID: 2055248855}
@@ -8597,7 +10073,7 @@ GameObject:
 --- !u!114 &2055248853
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2055248852}
   m_Enabled: 1
@@ -8607,21 +10083,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: c1ea45a4529164444855d6016e94af73, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: c4b3752c89956004ea51fe6efe2abcf0, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &2055248854
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2055248852}
   m_Enabled: 1
@@ -8646,7 +10141,7 @@ BoxCollider2D:
 --- !u!212 &2055248855
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2055248852}
   m_Enabled: 1
@@ -8656,6 +10151,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -8687,10 +10183,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &2055248856
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2055248852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -8703,9 +10200,9 @@ Transform:
 --- !u!1 &2145373790
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 2145373794}
   - component: {fileID: 2145373793}
@@ -8721,7 +10218,7 @@ GameObject:
 --- !u!114 &2145373791
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2145373790}
   m_Enabled: 1
@@ -8731,21 +10228,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   card:
-    name: Card
-    id: 0
-    openSprite: {fileID: 21300000, guid: 6ab2ea84717117243a87bface9e133c5, type: 3}
+    Name: 
+    Explain: 
+    ID: 0
+    Cost: 0
+    Type: 0
+    Attack: 0
+    Depence: 0
+    Heal: 0
+    Buff: 0
+    EffectEventName: 
+    FrontSpritePath: 
+    frontSprite: {fileID: 0}
+    MiddleSpritePath: 
+    middleSprite: {fileID: 0}
+    BackSpritePath: 
     backSprite: {fileID: 21300000, guid: ee7d0d86e2e7039448de46941ec0644c, type: 3}
-    cost: 1
-    attack: 1
-    depence: 1
-    heal: 1
+    HideSpritePath: 
+    hideSprite: {fileID: 0}
+  frontSprRenderer: {fileID: 0}
+  middleSprRenderer: {fileID: 0}
+  backSprRenderer: {fileID: 0}
   hand: {fileID: 0}
   slot: {fileID: 0}
   isMine: 1
+  infoView: {fileID: 0}
+  cardNameText: {fileID: 0}
+  cardCostText: {fileID: 0}
+  cardTypeText: {fileID: 0}
+  cardExplainText: {fileID: 0}
+  photonView: {fileID: 0}
 --- !u!61 &2145373792
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2145373790}
   m_Enabled: 1
@@ -8770,7 +10286,7 @@ BoxCollider2D:
 --- !u!212 &2145373793
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2145373790}
   m_Enabled: 1
@@ -8780,6 +10296,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -8811,10 +10328,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!4 &2145373794
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2145373790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
