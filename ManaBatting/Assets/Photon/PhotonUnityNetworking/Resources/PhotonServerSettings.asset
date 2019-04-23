@@ -42,5 +42,15 @@ MonoBehaviour:
   - OnSubHand
   - OnUnBatchCard
   - RespawnSpaceship
+  - RemoteDrawCard
+  - RemoteAddHand
+  - RemoteManaBet
+  - RemoteNextBetTurn
+  - RemoteReadyBatch
+  - RemoteSpinCoin
+  - RemoteSubHand
+  - RmoteRandomBetTurn
+  - RemoteSetBatchCard
+  - RemoteUnBatchCard
   DisableAutoOpenWizard: 1
   ShowSettings: 0

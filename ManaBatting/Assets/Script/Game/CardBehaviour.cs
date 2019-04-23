@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using Photon.Pun;
 
+using Photon.Pun;
+using Photon.Realtime;
 
 public class CardBehaviour : MonoBehaviour
 {
@@ -59,7 +60,7 @@ public class CardBehaviour : MonoBehaviour
     public void SetIndex(int index)
     {
         this.index = index;
-        //SetSortingOrder();
+        SetSortingOrder();
     }
 
     public void SetSortingOrder()
@@ -98,6 +99,14 @@ public class CardBehaviour : MonoBehaviour
     {
         isMine = photonView.IsMine;
     }
+
+    public void SetOwner(Player player)
+    {
+        photonView.TransferOwnership(player);
+
+        isMine = PhotonNetwork.LocalPlayer.Equals(player);
+    }
+
 
     public void Open()
     {
@@ -151,7 +160,7 @@ public class CardBehaviour : MonoBehaviour
         slot.Batch(this);
 
         if (isSend)
-            slot.SendSetBatch(this, isControlHand);
+            slot.RPCSetBatch(this, isControlHand);
 
         if (isControlHand)
             SubHand();
@@ -168,7 +177,7 @@ public class CardBehaviour : MonoBehaviour
         slot.UnBatch();
 
         if (isSend)
-            slot.SendUnBatch(isControlHand);
+            slot.RPCUnBatch(isControlHand);
 
         if (isControlHand)
             AddHand();
@@ -181,13 +190,13 @@ public class CardBehaviour : MonoBehaviour
         hand.AddCard(this);
     }
 
-    public void SendAddHand()
+    public void RPCAddHand()
     {
-        photonView.RPC("OnAddHand", RpcTarget.OthersBuffered, null);
+        photonView.RPC("RemoteAddHand", RpcTarget.OthersBuffered, null);
     }
 
     [PunRPC]
-    public void OnAddHand()
+    public void RemoteAddHand()
     {
         print("add hand");
         hand.AddCard(this);
@@ -198,13 +207,13 @@ public class CardBehaviour : MonoBehaviour
         hand.SubCard(index);
     }
 
-    public void SendSubHand()
+    public void RPCSubHand()
     {
-        photonView.RPC("OnSubHand", RpcTarget.OthersBuffered, null);
+        photonView.RPC("RemoteSubHand", RpcTarget.OthersBuffered, null);
     }
 
     [PunRPC]
-    public void OnSubHand()
+    public void RemoteSubHand()
     {
         print("sub hand");
         hand.SubCard(index);

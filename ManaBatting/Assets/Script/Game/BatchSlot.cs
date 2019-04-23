@@ -20,9 +20,9 @@ public class BatchSlot : MonoBehaviour
         group.BatchCard(index, card);
     }
 
-    public void SendSetBatch(CardBehaviour card, bool isControlHand)
+    public void RPCSetBatch(CardBehaviour card, bool isControlHand)
     {
-        group.SendSetBatchCard(index, card.index, isControlHand);
+        group.RPCSetBatchCard(index, card.index, isControlHand);
     }
 
     public void UnBatch()
@@ -30,9 +30,9 @@ public class BatchSlot : MonoBehaviour
         group.BatchCard(index, null);
     }
 
-    public void SendUnBatch(bool isControlHand)
+    public void RPCUnBatch(bool isControlHand)
     {
-        group.SendUnBatchCard(index, isControlHand);
+        group.RPCUnBatchCard(index, isControlHand);
     }
 
     public bool IsAllowBatch()

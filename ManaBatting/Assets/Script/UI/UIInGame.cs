@@ -10,7 +10,7 @@ public class UIInGame : MonoBehaviour
 
     public void OnFinshBatch()
     {
-        GameManager.Instance.SendReadyBatch(GameManager.Instance.myID);
+        GameManager.Instance.RPCReadyBatch(GameManager.Instance.myID);
     }
 
 

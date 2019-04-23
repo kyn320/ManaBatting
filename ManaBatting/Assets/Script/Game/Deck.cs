@@ -14,7 +14,7 @@ public class Deck : MonoBehaviour
     {
         for (int i = 0; i < 12; ++i)
         {
-            cardList.Add(CardDatabase.Instance.dataList[i]);
+            cardList.Add(CardDatabase.Instance.itemList[i]);
         }
     }
 

@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class CardDatabase : Singleton<CardDatabase>
 {
-    public List<Card> dataList;
+    public List<Card> itemList;
 
-    private DataService ds;
+    private DataService dataService;
 
     protected override void Awake()
     {
         base.Awake();
-        ds = new DataService("CardDatabase.db");
+        dataService = new DataService("CardDatabase.db");
         //CreateDB();
         StartSync();
     }
     
     private void StartSync()
     {
-        dataList = GetCards();
+        itemList = GetCards();
         ToConsole(GetCards());
     }
 
@@ -38,10 +38,10 @@ public class CardDatabase : Singleton<CardDatabase>
 
     public void CreateDB()
     {
-        ds.Connection.DropTable<Card>();
-        ds.Connection.CreateTable<Card>();
+        dataService.Connection.DropTable<Card>();
+        dataService.Connection.CreateTable<Card>();
 
-        ds.Connection.InsertAll(new[]{
+        dataService.Connection.InsertAll(new[]{
             new Card{
                 id = 1,
                 name = "토마토 맞좀 봐라!",
@@ -79,28 +79,28 @@ public class CardDatabase : Singleton<CardDatabase>
 
     public List<Card> GetCards()
     {
-        return ds.Connection.Table<Card>().ToList();
+        return dataService.Connection.Table<Card>().ToList();
     }
 
     public List<Card> GetCardsWithName(string name)
     {
-        return ds.Connection.Table<Card>().Where(x => x.name == name).ToList();
+        return dataService.Connection.Table<Card>().Where(x => x.name == name).ToList();
     }
 
     public Card GetCardWithID(int id)
     {
-        return ds.Connection.Table<Card>().Where(x => x.id == id).FirstOrDefault();
+        return dataService.Connection.Table<Card>().Where(x => x.id == id).FirstOrDefault();
     }
 
     public Card GetCardWithName(string name)
     {
-        return ds.Connection.Table<Card>().Where(x => x.name == name).FirstOrDefault();
+        return dataService.Connection.Table<Card>().Where(x => x.name == name).FirstOrDefault();
     }
 
     public Card CreateCard(Card card)
     {
         var p = card;
-        ds.Connection.Insert(p);
+        dataService.Connection.Insert(p);
         return p;
     }
 

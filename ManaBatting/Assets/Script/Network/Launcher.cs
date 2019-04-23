@@ -25,6 +25,7 @@ namespace Game.Network
         private void Start()
         {
             PhotonNetwork.NickName = PlayDataManager.instance.playerName;
+            Connect();
         }
 
         public void Connect()
@@ -66,17 +67,25 @@ namespace Game.Network
         {
             base.OnJoinRandomFailed(returnCode, message);
             Debug.Log("Failed Join Random Room");
-            PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersRoom , PublishUserId = true });
+            PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = maxPlayersRoom, PublishUserId = true });
         }
 
         public override void OnJoinedRoom()
         {
             base.OnJoinedRoom();
-            Debug.Log("Connect the Room");
+
+            Debug.Log("Connect the Room / IsMater " + PhotonNetwork.IsMasterClient + "  / Member : " + PhotonNetwork.CurrentRoom.PlayerCount);
+        }
+
+        public override void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            base.OnPlayerEnteredRoom(newPlayer);
+
             if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount == 2)
             {
                 PhotonNetwork.LoadLevel("prototype");
             }
+
         }
 
     }

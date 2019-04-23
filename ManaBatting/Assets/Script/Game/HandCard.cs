@@ -17,6 +17,7 @@ public class HandCard : MonoBehaviour
     public float cardPerDistance = 4f;
 
     CardManager cardmanager;
+
     PhotonView photonView;
 
     void Awake()
@@ -24,32 +25,35 @@ public class HandCard : MonoBehaviour
         photonView = PhotonView.Get(this);
     }
 
-    // Use this for initialization
     void Start()
     {
         cardmanager = CardManager.Instance;
+
+        Batch();
+    }
+
+    private void Update()
+    {
         Batch();
     }
 
     public void DrawCard(Card card, bool isMine)
     {
-        SendDrawCard(photonView.ViewID, card.id, PhotonNetwork.LocalPlayer);
+        RPCDrawCard(card.id, PhotonNetwork.LocalPlayer);
     }
 
-    public void SendDrawCard(int viewId, int cardId, Player player)
+    public void RPCDrawCard(int cardId, Player player)
     {
-        photonView.RPC("OnDrawCard", RpcTarget.AllBuffered, viewId, cardId, player);
+        photonView.RPC("RemoteDrawCard", RpcTarget.AllBuffered, cardId, player);
     }
 
     [PunRPC]
-    public void OnDrawCard(int viewId, int cardId, Player player)
+    public void RemoteDrawCard(int cardId, Player player)
     {
         GameObject g = Instantiate(cardPrefab);
         CardBehaviour cardBehaviour = g.GetComponent<CardBehaviour>();
-        cardBehaviour.photonView.ViewID = viewId;
-        cardBehaviour.photonView.TransferOwnership(player);
+        cardBehaviour.SetOwner(player);
         cardBehaviour.SetCard(CardDatabase.Instance.GetCardWithID(cardId));
-        cardBehaviour.SetIsMine();
 
         if (cardBehaviour.isMine)
             cardmanager.handCards[0].AddCard(cardBehaviour);
@@ -69,9 +73,10 @@ public class HandCard : MonoBehaviour
         Batch();
     }
 
+
+
     void Batch()
     {
-        // 20f for example, try various values
         float numberOfCards = cardList.Count;
 
         float twistPerCard = totalTwist / numberOfCards;
@@ -100,15 +105,17 @@ public class HandCard : MonoBehaviour
 
             cardList[i].SetHandOrign(transform.TransformPoint(new Vector2(startX + (i * cardPerDistance), -nudgeThisCard)), Quaternion.Euler(0f, 0f, twistForThisCard));
 
-            //if (id != GameManager.Instance.myID)
-            //    cardList[i].Hide();
-            //else
-            //    cardList[i].Open();
+            if (id != GameManager.Instance.myID)
+                cardList[i].Hide();
+            else
+                cardList[i].Open();
 
             cardList[i].SetHand(this);
             cardList[i].SetIndex(i);
         }
 
     }
+
+    
 
 }

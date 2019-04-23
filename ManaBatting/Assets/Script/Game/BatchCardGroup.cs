@@ -40,13 +40,13 @@ public class BatchCardGroup : MonoBehaviour
         batchList[index] = card;
     }
 
-    public void SendSetBatchCard(int index, int handCardIndex, bool isControlHand)
+    public void RPCSetBatchCard(int index, int handCardIndex, bool isControlHand)
     {
-        photonView.RPC("OnSetBatchCard", RpcTarget.OthersBuffered, 1, handCardIndex, index, isControlHand);
+        photonView.RPC("RemoteSetBatchCard", RpcTarget.OthersBuffered, 1, handCardIndex, index, isControlHand);
     }
 
     [PunRPC]
-    public void OnSetBatchCard(int playerID, int handCardIndex, int index, bool isControlHand)
+    public void RemoteSetBatchCard(int playerID, int handCardIndex, int index, bool isControlHand)
     {
         if (handCardIndex == -1)
             cardManager.batchCardGroups[playerID].batchSlot[index].GetCard();
@@ -54,13 +54,13 @@ public class BatchCardGroup : MonoBehaviour
             cardManager.handCards[playerID].cardList[handCardIndex].SetSlot(cardManager.batchCardGroups[playerID].batchSlot[index], false, isControlHand);
     }
 
-    public void SendUnBatchCard(int index, bool isControlHand)
+    public void RPCUnBatchCard(int index, bool isControlHand)
     {
-        photonView.RPC("OnUnBatchCard", RpcTarget.OthersBuffered, 1, index, isControlHand);
+        photonView.RPC("RemoteUnBatchCard", RpcTarget.OthersBuffered, 1, index, isControlHand);
     }
 
     [PunRPC]
-    public void OnUnBatchCard(int playerID, int index, bool isControlHand)
+    public void RemoteUnBatchCard(int playerID, int index, bool isControlHand)
     {
         cardManager.batchCardGroups[playerID].batchList[index].UnSlot(false, isControlHand);
     }

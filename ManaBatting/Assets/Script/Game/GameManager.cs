@@ -5,10 +5,9 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : SingletonPunCallbacks<GameManager>
 {
     CardManager cardManager;
-    PhotonView photonView;
 
     public UIInGame ui;
 
@@ -36,7 +35,6 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        photonView = PhotonView.Get(this);
     }
 
     void Start()
@@ -49,13 +47,6 @@ public class GameManager : Singleton<GameManager>
         manaBets = new int[PhotonNetwork.CurrentRoom.MaxPlayers];
         giveUpBets = new bool[PhotonNetwork.CurrentRoom.MaxPlayers];
         readyForBatches = new bool[PhotonNetwork.CurrentRoom.MaxPlayers];
-
-        playerList = PhotonNetwork.PlayerList.OfType<Player>().ToList();
-        playerList.Sort();
-
-        myID = FindMyID();
-
-        cardManager.SetID(myID);
 
         if (PhotonNetwork.IsMasterClient)
         {
@@ -94,14 +85,14 @@ public class GameManager : Singleton<GameManager>
         return -1;
     }
 
-    public void SendReadyBatch(int id)
+    public void RPCReadyBatch(int id)
     {
         //서버로 전송
-        photonView.RPC("OnReadyBatch", RpcTarget.AllBuffered, id);
+        photonView.RPC("RemoteReadyBatch", RpcTarget.AllBuffered, id);
     }
 
     [PunRPC]
-    void OnReadyBatch(int id)
+    void RemoteReadyBatch(int id)
     {
         readyForBatches[id] = true;
         print(id + "is ready");
@@ -115,20 +106,20 @@ public class GameManager : Singleton<GameManager>
             if (PhotonNetwork.IsMasterClient)
             {
                 print("send spin");
-                SendSpinCoin();
+                RPCSpinCoin();
             }
         }
     }
 
-    void SendSpinCoin()
+    void RPCSpinCoin()
     {
         //서버로 회전 상태를 전송
         //서버로 전송
-        photonView.RPC("OnSpinCoin", RpcTarget.AllBuffered, null);
+        photonView.RPC("RemoteSpinCoin", RpcTarget.AllBuffered, null);
     }
 
     [PunRPC]
-    void OnSpinCoin()
+    void RemoteSpinCoin()
     {
         StartCoroutine(SpinCoin());
 
@@ -157,14 +148,14 @@ public class GameManager : Singleton<GameManager>
         print("end spin");
     }
 
-    void SendRandomBetTurn(int whoFirst)
+    void RPCRandomBetTurn(int whoFirst)
     {
         //서버로 전송
-        photonView.RPC("OnRandomBetTurn", RpcTarget.AllBuffered, whoFirst);
+        photonView.RPC("RemoteRandomBetTurn", RpcTarget.AllBuffered, whoFirst);
     }
 
     [PunRPC]
-    void OnRandomBetTurn(int whoFirst)
+    void RmoteRandomBetTurn(int whoFirst)
     {
         print("WhoFirst on randomn rpc = " + whoFirst + " / my ID = " + myID);
         this.whoFirst = whoFirst;
@@ -182,17 +173,17 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(3f);
 
         int whoFirst = Random.Range(0, 2);
-        SendRandomBetTurn(whoFirst);
+        RPCRandomBetTurn(whoFirst);
     }
 
-    void SendNextBetTurn()
+    void RPCNextBetTurn()
     {
         //서버로 전송
-        photonView.RPC("OnNextBetTurn", RpcTarget.AllBuffered, currentBetTurn);
+        photonView.RPC("RemoteNextBetTurn", RpcTarget.AllBuffered, currentBetTurn);
     }
 
     [PunRPC]
-    void OnNextBetTurn(int nextTurn)
+    void RemoteNextBetTurn(int nextTurn)
     {
         if (countBetTurn == 2 && (giveUpBets[0] || giveUpBets[1]))
         {
@@ -200,7 +191,8 @@ public class GameManager : Singleton<GameManager>
             ui.manaBet.Hide();
             cardManager.OpenCard();
         }
-        else {
+        else
+        {
             //1 % 2 = 1 | 2 % 2 = 0 | 3 % 2 = 1 | 4 % 2 = 0 |
             countBetTurn = (countBetTurn + 1) > 2 ? 1 : (countBetTurn + 1);
             print("countBet = " + countBetTurn);
@@ -214,14 +206,14 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void SendManaBet(int manaBet)
+    public void RPCManaBet(int manaBet)
     {
         //서버로 전송
-        photonView.RPC("OnManaBet", RpcTarget.AllBuffered, myID, manaBet);
+        photonView.RPC("RemoteManaBet", RpcTarget.AllBuffered, myID, manaBet);
     }
 
     [PunRPC]
-    public void OnManaBet(int id, int manaBet)
+    public void RemoteManaBet(int id, int manaBet)
     {
         print("Set Mana Bet" + id + " = " + manaBet);
         if (manaBet == -1)
@@ -239,7 +231,7 @@ public class GameManager : Singleton<GameManager>
         if (id == myID)
         {
             print("is next turn");
-            SendNextBetTurn();
+            RPCNextBetTurn();
         }
 
     }
@@ -264,6 +256,17 @@ public class GameManager : Singleton<GameManager>
     public int GetTotalBet()
     {
         return manaBets[0] + manaBets[1];
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+
+        playerList = PhotonNetwork.PlayerList.ToList<Player>();
+
+        myID = FindMyID();
+
+        cardManager.SetID(myID);
     }
 
 }

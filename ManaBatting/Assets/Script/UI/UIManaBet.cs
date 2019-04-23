@@ -71,7 +71,7 @@ public class UIManaBet : MonoBehaviour
 
     public void Bet()
     {
-        GameManager.Instance.SendManaBet(manaBetThink);
+        GameManager.Instance.RPCManaBet(manaBetThink);
         manaBetThink = 0;
         betManaText[0].text = manaBetThink.ToString();
     }
