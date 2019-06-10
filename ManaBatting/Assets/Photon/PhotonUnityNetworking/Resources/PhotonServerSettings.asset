@@ -23,7 +23,7 @@ MonoBehaviour:
     Protocol: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  StartInOfflineMode: 0
+  StartInOfflineMode: 1
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
@@ -31,26 +31,16 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - GameStart
-  - OnAddHand
-  - OnDrawCard
-  - OnManaBet
-  - OnNextBetTurn
-  - OnRandomBetTurn
-  - OnReadyBatch
-  - OnSetBatchCard
-  - OnSpinCoin
-  - OnSubHand
-  - OnUnBatchCard
-  - RespawnSpaceship
-  - RemoteDrawCard
+  - RemoteAddCard
   - RemoteAddHand
   - RemoteManaBet
   - RemoteNextBetTurn
   - RemoteReadyBatch
+  - RemoteSetBatchCard
   - RemoteSpinCoin
   - RemoteSubHand
-  - RmoteRandomBetTurn
-  - RemoteSetBatchCard
   - RemoteUnBatchCard
+  - RespawnSpaceship
+  - RmoteRandomBetTurn
   DisableAutoOpenWizard: 1
   ShowSettings: 0

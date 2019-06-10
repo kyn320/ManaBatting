@@ -19,7 +19,7 @@ public class CardBehaviour : MonoBehaviour
 
     public SpriteRenderer frontSprRenderer, middleSprRenderer, backSprRenderer;
 
-    public HandCard hand;
+    public HandDeck hand;
     public BatchSlot slot;
 
     public bool isMine = false;
@@ -31,8 +31,6 @@ public class CardBehaviour : MonoBehaviour
 
     public UnityAction endAction;
 
-    CardEffect effect;
-
     void Awake()
     {
         photonView = PhotonView.Get(this);
@@ -41,10 +39,10 @@ public class CardBehaviour : MonoBehaviour
 
     void Start()
     {
-        effect = GetComponent<CardEffect>();
+
     }
 
-    public void SetHand(HandCard hand)
+    public void SetHand(HandDeck hand)
     {
         this.hand = hand;
     }
@@ -83,16 +81,7 @@ public class CardBehaviour : MonoBehaviour
     {
         this.card = card;
 
-        gameObject.name = photonView.Owner.NickName + " | " + card.name;
-
         ViewInfo();
-
-        System.Type type = System.Type.GetType(card.effectEventName + "Effect");
-
-        if (type != null)
-            gameObject.AddComponent(type);
-        else
-            Debug.LogError(card.effectEventName + "Effect is not found.");
     }
 
     public void SetIsMine()
@@ -261,8 +250,8 @@ public class CardBehaviour : MonoBehaviour
     IEnumerator Action()
     {
         WaitForAction waitAction = new WaitForAction();
-        effect.SetEndAction(waitAction.Finish);
-        effect.StartAction();
+        //effect.SetEndAction(waitAction.Finish);
+        //effect.StartAction();
         yield return waitAction;
         print("card behaviour out");
         endAction.Invoke();

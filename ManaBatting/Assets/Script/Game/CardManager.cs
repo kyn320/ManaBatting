@@ -6,7 +6,7 @@ using Photon.Pun;
 public class CardManager : Singleton<CardManager>
 {
     public int lastOpenIndex = -1;
-    public HandCard[] handCards;
+    public HandDeck[] handCards;
     public BatchCardGroup[] batchCardGroups;
 
     public CardBehaviour[] openCard;
@@ -16,7 +16,13 @@ public class CardManager : Singleton<CardManager>
     protected override void Awake()
     {
         base.Awake();
+        FindHandCards();
   //      photonView = PhotonView.Get(this);
+    }
+
+
+    void FindHandCards() {
+        handCards = GameObject.FindObjectsOfType<HandDeck>();
     }
 
     public void SetID(int myID)

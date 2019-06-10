@@ -7,6 +7,8 @@ public class InputManager : MonoBehaviour
 
     public CardBehaviour selectCard;
 
+    public float dragSpeed = 50f;
+
     Vector2 pos;
 
     BatchSlot slot;
@@ -115,8 +117,8 @@ public class InputManager : MonoBehaviour
         if (selectCard != null && Input.GetMouseButton(0))
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            selectCard.transform.position = Vector2.Lerp(selectCard.transform.position, pos, Time.deltaTime * 10f);
-            selectCard.transform.rotation = Quaternion.Lerp(selectCard.transform.rotation, Quaternion.identity, Time.deltaTime * 10f);
+            selectCard.transform.position = Vector2.Lerp(selectCard.transform.position, pos, Time.deltaTime * dragSpeed);
+            selectCard.transform.rotation = Quaternion.Lerp(selectCard.transform.rotation, Quaternion.identity, Time.deltaTime * dragSpeed);
         }
     }
 

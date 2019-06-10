@@ -6,23 +6,18 @@ using UnityEngine.UI;
 
 public class RadialBatch : MonoBehaviour
 {
-//    Transform tr;
-
     public float fDistance;
 
     [Range(0f, 360f)]
     public float MinAngle, MaxAngle, StartAngle;
 
-    void Awake()
+    void Update()
     {
- //       tr = GetComponent<Transform>();
-    }
-
-    void Update() {
         Batch();
     }
 
-    void Batch() {
+    void Batch()
+    {
         if (transform.childCount == 0)
             return;
         float fOffsetAngle = ((MaxAngle - MinAngle)) / (transform.childCount - 1);
@@ -34,7 +29,6 @@ public class RadialBatch : MonoBehaviour
             Transform child = transform.GetChild(i);
             if (child != null)
             {
-                //Adding the elements to the tracker stops the user from modifiying their positions via the editor.
                 Vector3 vPos = new Vector3(Mathf.Cos(fAngle * Mathf.Deg2Rad), Mathf.Sin(fAngle * Mathf.Deg2Rad), 0);
                 child.localPosition = vPos * fDistance;
                 fAngle += fOffsetAngle;
@@ -43,5 +37,5 @@ public class RadialBatch : MonoBehaviour
 
     }
 
-    
+
 }

@@ -23,7 +23,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
                 if (instance == null)
                 {
                     Debug.LogError("씬 내에 " + typeof(T).ToString() + " 이(가) 존재하지 않습니다.");
-                    Debug.Break();
+                    instance = new GameObject(typeof(T).ToString()).AddComponent<T>();
+                    Debug.LogError("씬 내에 " + typeof(T).ToString() + " 를 생성합니다.");
                 }
 
             }

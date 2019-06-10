@@ -20,11 +20,12 @@ namespace Game.Network
         private void Awake()
         {
             PhotonNetwork.AutomaticallySyncScene = true;
+            PhotonNetwork.OfflineMode = true;
         }
 
         private void Start()
         {
-            PhotonNetwork.NickName = PlayDataManager.instance.playerName;
+            //PhotonNetwork.NickName = PlayDataManager.instance.playerName;
             Connect();
         }
 
