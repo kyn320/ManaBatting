@@ -117,8 +117,7 @@ public class InputManager : MonoBehaviour
         if (selectCard != null && Input.GetMouseButton(0))
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            selectCard.transform.position = Vector2.Lerp(selectCard.transform.position, pos, Time.deltaTime * dragSpeed);
-            selectCard.transform.rotation = Quaternion.Lerp(selectCard.transform.rotation, Quaternion.identity, Time.deltaTime * dragSpeed);
+            selectCard.SetPositionAndRotation(pos, Quaternion.identity, dragSpeed);
         }
     }
 

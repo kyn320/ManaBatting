@@ -27,8 +27,6 @@ public class HandDeck : MonoBehaviour
     void Start()
     {
         cardmanager = CardManager.Instance;
-
-        Batch();
     }
 
     private void Update()
@@ -43,12 +41,17 @@ public class HandDeck : MonoBehaviour
 
     public void RPCAddCard(int cardId, Player player)
     {
-        photonView.RPC("RemoteAddCard", RpcTarget.AllBuffered, cardId, player);
+        if (PhotonNetwork.OfflineMode)
+            RemoteAddCard(cardId, player);
+        else
+            photonView.RPC("RemoteAddCard", RpcTarget.AllBuffered, cardId, player);
     }
 
     [PunRPC]
     public void RemoteAddCard(int cardId, Player player)
     {
+        print("remote");
+
         GameObject g = Instantiate(Resources.Load<GameObject>("Prefabs/CardObject"));
         g.transform.parent = transform;
         CardBehaviour cardBehaviour = g.GetComponent<CardBehaviour>();

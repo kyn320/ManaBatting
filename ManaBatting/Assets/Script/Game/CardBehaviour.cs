@@ -14,6 +14,9 @@ public class CardBehaviour : MonoBehaviour
 
     public Card card;
 
+    public bool isDrag = false;
+    [SerializeField]
+    float transformSpeed = 20f;
     Vector2 orignPos;
     Quaternion orignRot;
 
@@ -49,6 +52,9 @@ public class CardBehaviour : MonoBehaviour
 
     public void SetHandOrign(Vector2 pos, Quaternion rot)
     {
+        if (isDrag)
+            return;
+
         orignPos = pos;
         orignRot = rot;
 
@@ -115,8 +121,36 @@ public class CardBehaviour : MonoBehaviour
 
     Coroutine movePosition = null;
 
+    public void SetPositionAndRotation(Vector2 pos, Quaternion rot, float lerpSpeed = 10f)
+    {
+        isDrag = true;
+        if (movePosition != null)
+        {
+            StopCoroutine(movePosition);
+        }
+        movePosition = StartCoroutine(MovePositionAndRotation(pos, rot, lerpSpeed));
+    }
+
+    IEnumerator MovePositionAndRotation(Vector2 pos, Quaternion rot, float lerpSpeed)
+    {
+        float dist = 1, deg = 1f;
+        while (dist > 0.01f || deg > 0.01f)
+        {
+            dist = Vector2.SqrMagnitude(pos - (Vector2)transform.position);
+            deg = Quaternion.Angle(transform.rotation, rot);
+            transform.position = Vector2.Lerp(transform.position, pos, Time.deltaTime * lerpSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lerpSpeed);
+            yield return null;
+        }
+        movePosition = null;
+        isDrag = false;
+    }
+
     public void SetReplaceOrign()
     {
+        if (isDrag)
+            return;
+
         if (movePosition != null)
         {
             StopCoroutine(movePosition);
@@ -131,8 +165,8 @@ public class CardBehaviour : MonoBehaviour
         {
             dist = Vector2.SqrMagnitude(orignPos - (Vector2)transform.position);
             rot = Quaternion.Angle(transform.rotation, orignRot);
-            transform.position = Vector2.Lerp(transform.position, orignPos, Time.deltaTime * 10f);
-            transform.rotation = Quaternion.Lerp(transform.rotation, orignRot, Time.deltaTime * 10f);
+            transform.position = Vector2.Lerp(transform.position, orignPos, Time.deltaTime * transformSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, orignRot, Time.deltaTime * transformSpeed);
             yield return null;
         }
         movePosition = null;
@@ -226,8 +260,8 @@ public class CardBehaviour : MonoBehaviour
         {
             dist = Vector2.SqrMagnitude(target.position - transform.position);
             rot = Quaternion.Angle(transform.rotation, target.rotation);
-            transform.position = Vector2.Lerp(transform.position, target.position, Time.deltaTime * 10f);
-            transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, Time.deltaTime * 10f);
+            transform.position = Vector2.Lerp(transform.position, target.position, Time.deltaTime * transformSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, target.rotation, Time.deltaTime * transformSpeed);
             yield return null;
         }
         movePosition = null;

@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectCard: {fileID: 0}
+  dragSpeed: 50
 --- !u!4 &372599706
 Transform:
   m_ObjectHideFlags: 0
